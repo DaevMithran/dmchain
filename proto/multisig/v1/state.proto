@@ -25,7 +25,7 @@ message MultisigAccountDetails {
   uint32 threshold = 2;
   
   // Permission type for this multisig account
-  MultisigProposalType permission = 4;
+  MultisigProposalType permission = 3;
 }
 
 // An open multisig operation.
