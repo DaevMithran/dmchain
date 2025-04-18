@@ -10,7 +10,7 @@ SIMAPP = ./app
 
 # for dockerized protobuf tools
 DOCKER := $(shell which docker)
-HTTPS_GIT := github.com/rollchains/multisig.git
+HTTPS_GIT := github.com/DaevMithran/cosmos-modules.git
 
 export GO111MODULE = on
 

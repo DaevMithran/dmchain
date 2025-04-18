@@ -1,0 +1,144 @@
+syntax = "proto3";
+package multisig.v1;
+
+import "cosmos/msg/v1/msg.proto";
+import "multisig/v1/genesis.proto";
+import "multisig/v1/state.proto";
+import "gogoproto/gogo.proto";
+import "cosmos_proto/cosmos.proto";
+
+option go_package = "github.com/DaevMithran/cosmos-modules/x/multisig/types";
+
+// Msg defines the Msg service.
+service Msg {
+  option (cosmos.msg.v1.service) = true;
+
+  // UpdateParams defines a governance operation for updating the parameters.
+  //
+  // Since: cosmos-sdk 0.47
+  rpc UpdateParams(MsgUpdateParams) returns (MsgUpdateParamsResponse);
+
+  // Multisig account
+  rpc CreateMultisigAccount(MsgCreateMultisigAccountParams) returns (MsgCreateMultisigAccountResponse);
+
+  rpc AddMultisigSigner(MsgAddMultisigSignerParams) returns (MsgAddMultisigSignerResponse);
+
+  rpc CleanupMultisigSigner(MsgCleanupMultisigAccountParams) returns (MsgCleanupMultisigAccountResponse);
+
+  rpc SetThreshold(MsgSetMultisigThresholdParams) returns (MsgSetMultisigThresholdResponse);
+
+  rpc InitializeMultisigProposal(MsgInitializeMultisigProposalParams) returns (MsgInitializeMultisigResponse);
+
+  rpc ApproveMultisigProposal(MsgApproveMultisigProposalParams) returns (MsgApproveMultisigProposalResponse);
+
+  rpc CancelMultisigProposal(MsgCancelMultisigProposalParams) returns (MsgCancelMultisigProposalResponse);
+
+  rpc CleanupMultisigProposal(MsgCleanupMultisigProposalParams) returns (MsgCleanupMultisigProposalResponse);
+}
+
+// MsgUpdateParams is the Msg/UpdateParams request type.
+//
+// Since: cosmos-sdk 0.47
+message MsgUpdateParams {
+  option (cosmos.msg.v1.signer) = "authority";
+
+  // authority is the address of the governance account.
+  string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+
+  // params defines the parameters to update.
+  //
+  // NOTE: All parameters must be supplied.
+  Params params = 2 [(gogoproto.nullable) = false];
+}
+
+// MsgUpdateParamsResponse defines the response structure for executing a
+// MsgUpdateParams message.
+//
+// Since: cosmos-sdk 0.47
+message MsgUpdateParamsResponse {}
+
+// MsgCreateMultisigAccountParams defines the request type to create a multisig account
+message MsgCreateMultisigAccountParams {
+    string authority = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+    uint32 seed = 2;
+    uint32 threshold = 3;
+    repeated bytes signers = 4 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+    MultisigProposalType permission = 5;
+}
+
+// MsgCreateMultisigAccountResponse defines the response structure of a created multisig account operation
+message MsgCreateMultisigAccountResponse {
+    string multisig_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+}
+
+// MsgAddMultisigSignerParams defines the request type to add a signer to a multisig account
+message MsgAddMultisigSignerParams {
+  string multisig_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string signer = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  uint32 new_threshold = 4;
+}
+
+// MsgAddMultisigSignerResponse defines the response structure of adding a signer to a multisig account
+message MsgAddMultisigSignerResponse {}
+
+// MsgCleanupMultisigAccountParams defines the request type to remove all proposals linked to a deleted multisig account
+message MsgCleanupMultisigAccountParams {
+    string multisig_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+}
+
+// MsgCleanupMultisigAccountResponse defines the response structure of removing a set of proposals linked to a delted multisig account
+message MsgCleanupMultisigAccountResponse {}
+
+// MsgSetMultisigThresholdParams defines the request type to set the threshold for a multisig account
+message MsgSetMultisigThresholdParams {
+  string multisig_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  uint32 threshold = 2;
+}
+
+// MsgSetMultisigThresholdResponse defines the response structure of setting a threshold for a multisig account
+message MsgSetMultisigThresholdResponse {}
+
+// MsgInitializeMultisigProposalParams defines the request type to initialize a multisig proposal
+message MsgInitializeMultisigProposalParams {
+  string multisig_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string proposer = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  string title = 3;
+  string description = 4;
+  repeated bytes messages = 5;
+}
+
+// MsgInitializeMultisigResponse defines the response structure of initializing a multisig proposal
+message MsgInitializeMultisigResponse {
+  uint64 proposal_id = 1;
+}
+
+// MsgApproveMultisigProposalParams defines the request type to approve a multisig proposal
+message MsgApproveMultisigProposalParams {
+  string multisig_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  uint64 proposal_id = 2;
+  string approver = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+}
+
+// MsgApproveMultisigProposalResponse defines the response structure of approving a multisig proposal
+message MsgApproveMultisigProposalResponse {}
+
+// MsgCancelMultisigProposalParams defines the request type to reject a multisig proposal
+message MsgCancelMultisigProposalParams {
+  string multisig_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  uint64 proposal_id = 2;
+  string rejecter = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+}
+
+// MsgCancelMultisigProposalResponse defines the response structure of rejecting a multisig proposal
+message MsgCancelMultisigProposalResponse {}
+
+// MsgCleanupMultisigProposalParams defines the request type to clear all multisig proposals after account deletion
+message MsgCleanupMultisigProposalParams {
+  string multisig_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  uint64 proposal_id = 2;
+  string remover = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+}
+
+// MsgCleanupMultisigProposalResponse defines the response structure of removed proposal of deleted multisig account
+message MsgCleanupMultisigProposalResponse {}
+

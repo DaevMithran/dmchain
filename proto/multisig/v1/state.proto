@@ -1,0 +1,69 @@
+syntax = "proto3";
+
+package multisig.v1;
+
+import "cosmos/orm/v1/orm.proto";
+
+option go_package = "github.com/DaevMithran/cosmos-modules/x/multisig/types";
+
+// Types of multisig proposal permissions
+enum MultisigProposalType {
+    // Allow ALL operations by default
+    MULTISIG_PROPOSAL_TYPE_UNSPECIFIED = 0;
+    // Allow only transfer operations
+    MULTISIG_PROPOSAL_TYPE_TRANSFER_ONLY = 1;
+    // Allow all operations other than transfers
+    MULTISIG_PROPOSAL_TYPE_EXCEPT_TRANSFER = 2;
+}
+
+// Details of a multisig account - using Collections approach
+message MultisigAccountDetails {
+  // List of signers for this multisig account
+  repeated bytes signers = 1;
+  
+  // The threshold of approvers required for the multisig account to be able to execute a call.
+  uint32 threshold = 2;
+  
+  // Permission type for this multisig account
+  MultisigProposalType permission = 4;
+}
+
+// An open multisig operation.
+message Proposal {
+  option (cosmos.orm.v1.table) = {
+    id: 1
+    primary_key: {
+      fields: "id"
+      auto_increment: true
+    }
+    index: {
+      id: 1
+      fields: "multisig_address,call_hash"
+      unique: true
+    }
+    index: {
+      id: 2
+      fields: "depositor"
+    }
+  };
+  
+  // Unique identifier for the proposal
+  uint64 id = 1;
+  
+  // The multisig account address this proposal belongs to
+  bytes multisig_address = 2;
+  
+  // The hash of the call to be executed
+  bytes call_hash = 3;
+  
+  // The account who opened it (i.e. the first to approve it).
+  bytes depositor = 4;
+  
+  // The amount held in reserve of the `depositor`, to be returned once the operation ends.
+  uint64 deposit = 5;
+  
+  // The approvals achieved so far, including the depositor.
+  repeated bytes approvals = 6;
+}
+
+

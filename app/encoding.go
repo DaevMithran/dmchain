@@ -9,7 +9,7 @@ import (
 
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 
-	"github.com/rollchains/multisig/app/params"
+	"github.com/DaevMithran/cosmos-modules/app/params"
 )
 
 // MakeEncodingConfig creates a new EncodingConfig with all modules registered. For testing only

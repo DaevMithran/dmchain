@@ -2,7 +2,7 @@
 
 set -e
 
-GO_MOD_PACKAGE="github.com/rollchains/multisig"
+GO_MOD_PACKAGE="github.com/DaevMithran/cosmos-modules"
 
 echo "Generating gogo proto code"
 cd proto

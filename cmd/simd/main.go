@@ -5,8 +5,8 @@ import (
 
 	"cosmossdk.io/log"
 
+	"github.com/DaevMithran/cosmos-modules/app"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
-	"github.com/rollchains/multisig/app"
 )
 
 func main() {
