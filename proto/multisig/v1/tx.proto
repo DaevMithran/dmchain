@@ -8,7 +8,7 @@ import "multisig/v1/state.proto";
 import "gogoproto/gogo.proto";
 import "cosmos_proto/cosmos.proto";
 
-option go_package = "github.com/DaevMithran/cosmos-modules/x/multisig/types";
+option go_package = "github.com/DaevMithran/dmchain/x/multisig/types";
 
 // Msg defines the Msg service.
 service Msg {
