@@ -9,9 +9,13 @@ import (
 	"cosmossdk.io/log"
 	storetypes "cosmossdk.io/store/types"
 
+	multisigtypes "github.com/DaevMithran/cosmos-modules/x/multisig/types"
 	cmtproto "github.com/cometbft/cometbft/proto/tendermint/types"
+	"github.com/cosmos/cosmos-sdk/baseapp"
+	addresscodec "github.com/cosmos/cosmos-sdk/codec/address"
 	sdkaddress "github.com/cosmos/cosmos-sdk/codec/address"
 	"github.com/cosmos/cosmos-sdk/runtime"
+	"github.com/cosmos/cosmos-sdk/testutil"
 	"github.com/cosmos/cosmos-sdk/testutil/integration"
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -53,6 +57,7 @@ type testFixture struct {
 	bankkeeper    bankkeeper.BaseKeeper
 	stakingKeeper *stakingkeeper.Keeper
 	mintkeeper    mintkeeper.Keeper
+	baseApp       *baseapp.BaseApp
 
 	addrs      []sdk.AccAddress
 	govModAddr string
@@ -66,7 +71,10 @@ func SetupTest(t *testing.T) *testFixture {
 	cfg.SetBech32PrefixForAccount(app.Bech32PrefixAccAddr, app.Bech32PrefixAccPub)
 	cfg.SetBech32PrefixForValidator(app.Bech32PrefixValAddr, app.Bech32PrefixValPub)
 	cfg.SetBech32PrefixForConsensusNode(app.Bech32PrefixConsAddr, app.Bech32PrefixConsPub)
+	key := storetypes.NewKVStoreKey(multisigtypes.StoreKey)
 	cfg.SetCoinType(app.CoinType)
+	testCtx := testutil.DefaultContextWithDB(f.T(), key, storetypes.NewTransientStoreKey("transient_test"))
+
 
 	validatorAddressCodec := sdkaddress.NewBech32Codec(app.Bech32PrefixValAddr)
 	accountAddressCodec := sdkaddress.NewBech32Codec(app.Bech32PrefixAccAddr)
@@ -75,6 +83,15 @@ func SetupTest(t *testing.T) *testFixture {
 	// Base setup
 	logger := log.NewTestLogger(t)
 	encCfg := moduletestutil.MakeTestEncodingConfig()
+
+	f.baseApp = baseapp.NewBaseApp(
+		"authz",
+		log.NewNopLogger(),
+		testCtx.DB,
+		encCfg.TxConfig.TxDecoder(),
+	)
+	f.baseApp.SetCMS(testCtx.CMS)
+	f.baseApp.SetInterfaceRegistry(encCfg.InterfaceRegistry)
 
 	f.govModAddr = authtypes.NewModuleAddress(govtypes.ModuleName).String()
 	f.addrs = simtestutil.CreateIncrementalAccounts(3)
@@ -86,7 +103,7 @@ func SetupTest(t *testing.T) *testFixture {
 	registerBaseSDKModules(logger, f, encCfg, keys, accountAddressCodec, validatorAddressCodec, consensusAddressCodec)
 
 	// Setup Keeper.
-	f.k = keeper.NewKeeper(encCfg.Codec, runtime.NewKVStoreService(keys[types.ModuleName]), logger, f.govModAddr)
+	f.k = keeper.NewKeeper(encCfg.Codec, addresscodec.NewBech32Codec("cosmos"), f.baseApp.MsgServiceRouter(),runtime.NewKVStoreService(keys[types.ModuleName]),logger, f.govModAddr, f.bankkeeper)
 	f.msgServer = keeper.NewMsgServerImpl(f.k)
 	f.queryServer = keeper.NewQuerier(f.k)
 	f.appModule = module.NewAppModule(encCfg.Codec, f.k)

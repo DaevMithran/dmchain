@@ -19,15 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	Msg_UpdateParams_FullMethodName               = "/multisig.v1.Msg/UpdateParams"
-	Msg_CreateMultisigAccount_FullMethodName      = "/multisig.v1.Msg/CreateMultisigAccount"
-	Msg_AddMultisigSigner_FullMethodName          = "/multisig.v1.Msg/AddMultisigSigner"
-	Msg_CleanupMultisigSigner_FullMethodName      = "/multisig.v1.Msg/CleanupMultisigSigner"
-	Msg_SetThreshold_FullMethodName               = "/multisig.v1.Msg/SetThreshold"
-	Msg_InitializeMultisigProposal_FullMethodName = "/multisig.v1.Msg/InitializeMultisigProposal"
-	Msg_ApproveMultisigProposal_FullMethodName    = "/multisig.v1.Msg/ApproveMultisigProposal"
-	Msg_CancelMultisigProposal_FullMethodName     = "/multisig.v1.Msg/CancelMultisigProposal"
-	Msg_CleanupMultisigProposal_FullMethodName    = "/multisig.v1.Msg/CleanupMultisigProposal"
+	Msg_UpdateParams_FullMethodName                       = "/multisig.v1.Msg/UpdateParams"
+	Msg_CreateMultisigAccount_FullMethodName              = "/multisig.v1.Msg/CreateMultisigAccount"
+	Msg_AddMultisigSigner_FullMethodName                  = "/multisig.v1.Msg/AddMultisigSigner"
+	Msg_CleanupMultisigSigner_FullMethodName              = "/multisig.v1.Msg/CleanupMultisigSigner"
+	Msg_SetThreshold_FullMethodName                       = "/multisig.v1.Msg/SetThreshold"
+	Msg_InitializeMultisigProposal_FullMethodName         = "/multisig.v1.Msg/InitializeMultisigProposal"
+	Msg_ApproveMultisigProposal_FullMethodName            = "/multisig.v1.Msg/ApproveMultisigProposal"
+	Msg_ApproveAndDispatchMultisigProposal_FullMethodName = "/multisig.v1.Msg/ApproveAndDispatchMultisigProposal"
+	Msg_CancelMultisigProposal_FullMethodName             = "/multisig.v1.Msg/CancelMultisigProposal"
+	Msg_CleanupMultisigProposal_FullMethodName            = "/multisig.v1.Msg/CleanupMultisigProposal"
 )
 
 // MsgClient is the client API for Msg service.
@@ -45,6 +46,7 @@ type MsgClient interface {
 	SetThreshold(ctx context.Context, in *MsgSetMultisigThresholdParams, opts ...grpc.CallOption) (*MsgSetMultisigThresholdResponse, error)
 	InitializeMultisigProposal(ctx context.Context, in *MsgInitializeMultisigProposalParams, opts ...grpc.CallOption) (*MsgInitializeMultisigResponse, error)
 	ApproveMultisigProposal(ctx context.Context, in *MsgApproveMultisigProposalParams, opts ...grpc.CallOption) (*MsgApproveMultisigProposalResponse, error)
+	ApproveAndDispatchMultisigProposal(ctx context.Context, in *MsgApproveAndDispatchMultisigProposalParams, opts ...grpc.CallOption) (*MsgApproveAndDispatchMultisigProposalResponse, error)
 	CancelMultisigProposal(ctx context.Context, in *MsgCancelMultisigProposalParams, opts ...grpc.CallOption) (*MsgCancelMultisigProposalResponse, error)
 	CleanupMultisigProposal(ctx context.Context, in *MsgCleanupMultisigProposalParams, opts ...grpc.CallOption) (*MsgCleanupMultisigProposalResponse, error)
 }
@@ -120,6 +122,15 @@ func (c *msgClient) ApproveMultisigProposal(ctx context.Context, in *MsgApproveM
 	return out, nil
 }
 
+func (c *msgClient) ApproveAndDispatchMultisigProposal(ctx context.Context, in *MsgApproveAndDispatchMultisigProposalParams, opts ...grpc.CallOption) (*MsgApproveAndDispatchMultisigProposalResponse, error) {
+	out := new(MsgApproveAndDispatchMultisigProposalResponse)
+	err := c.cc.Invoke(ctx, Msg_ApproveAndDispatchMultisigProposal_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *msgClient) CancelMultisigProposal(ctx context.Context, in *MsgCancelMultisigProposalParams, opts ...grpc.CallOption) (*MsgCancelMultisigProposalResponse, error) {
 	out := new(MsgCancelMultisigProposalResponse)
 	err := c.cc.Invoke(ctx, Msg_CancelMultisigProposal_FullMethodName, in, out, opts...)
@@ -153,6 +164,7 @@ type MsgServer interface {
 	SetThreshold(context.Context, *MsgSetMultisigThresholdParams) (*MsgSetMultisigThresholdResponse, error)
 	InitializeMultisigProposal(context.Context, *MsgInitializeMultisigProposalParams) (*MsgInitializeMultisigResponse, error)
 	ApproveMultisigProposal(context.Context, *MsgApproveMultisigProposalParams) (*MsgApproveMultisigProposalResponse, error)
+	ApproveAndDispatchMultisigProposal(context.Context, *MsgApproveAndDispatchMultisigProposalParams) (*MsgApproveAndDispatchMultisigProposalResponse, error)
 	CancelMultisigProposal(context.Context, *MsgCancelMultisigProposalParams) (*MsgCancelMultisigProposalResponse, error)
 	CleanupMultisigProposal(context.Context, *MsgCleanupMultisigProposalParams) (*MsgCleanupMultisigProposalResponse, error)
 	mustEmbedUnimplementedMsgServer()
@@ -182,6 +194,9 @@ func (UnimplementedMsgServer) InitializeMultisigProposal(context.Context, *MsgIn
 }
 func (UnimplementedMsgServer) ApproveMultisigProposal(context.Context, *MsgApproveMultisigProposalParams) (*MsgApproveMultisigProposalResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ApproveMultisigProposal not implemented")
+}
+func (UnimplementedMsgServer) ApproveAndDispatchMultisigProposal(context.Context, *MsgApproveAndDispatchMultisigProposalParams) (*MsgApproveAndDispatchMultisigProposalResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ApproveAndDispatchMultisigProposal not implemented")
 }
 func (UnimplementedMsgServer) CancelMultisigProposal(context.Context, *MsgCancelMultisigProposalParams) (*MsgCancelMultisigProposalResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CancelMultisigProposal not implemented")
@@ -328,6 +343,24 @@ func _Msg_ApproveMultisigProposal_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Msg_ApproveAndDispatchMultisigProposal_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(MsgApproveAndDispatchMultisigProposalParams)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(MsgServer).ApproveAndDispatchMultisigProposal(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Msg_ApproveAndDispatchMultisigProposal_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(MsgServer).ApproveAndDispatchMultisigProposal(ctx, req.(*MsgApproveAndDispatchMultisigProposalParams))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _Msg_CancelMultisigProposal_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(MsgCancelMultisigProposalParams)
 	if err := dec(in); err != nil {
@@ -398,6 +431,10 @@ var Msg_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ApproveMultisigProposal",
 			Handler:    _Msg_ApproveMultisigProposal_Handler,
+		},
+		{
+			MethodName: "ApproveAndDispatchMultisigProposal",
+			Handler:    _Msg_ApproveAndDispatchMultisigProposal_Handler,
 		},
 		{
 			MethodName: "CancelMultisigProposal",

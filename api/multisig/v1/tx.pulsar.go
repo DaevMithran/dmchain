@@ -6482,6 +6482,1037 @@ func (x *fastReflection_MsgApproveMultisigProposalResponse) ProtoMethods() *prot
 }
 
 var (
+	md_MsgApproveAndDispatchMultisigProposalParams                  protoreflect.MessageDescriptor
+	fd_MsgApproveAndDispatchMultisigProposalParams_multisig_address protoreflect.FieldDescriptor
+	fd_MsgApproveAndDispatchMultisigProposalParams_proposal_id      protoreflect.FieldDescriptor
+	fd_MsgApproveAndDispatchMultisigProposalParams_approver         protoreflect.FieldDescriptor
+	fd_MsgApproveAndDispatchMultisigProposalParams_message          protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_multisig_v1_tx_proto_init()
+	md_MsgApproveAndDispatchMultisigProposalParams = File_multisig_v1_tx_proto.Messages().ByName("MsgApproveAndDispatchMultisigProposalParams")
+	fd_MsgApproveAndDispatchMultisigProposalParams_multisig_address = md_MsgApproveAndDispatchMultisigProposalParams.Fields().ByName("multisig_address")
+	fd_MsgApproveAndDispatchMultisigProposalParams_proposal_id = md_MsgApproveAndDispatchMultisigProposalParams.Fields().ByName("proposal_id")
+	fd_MsgApproveAndDispatchMultisigProposalParams_approver = md_MsgApproveAndDispatchMultisigProposalParams.Fields().ByName("approver")
+	fd_MsgApproveAndDispatchMultisigProposalParams_message = md_MsgApproveAndDispatchMultisigProposalParams.Fields().ByName("message")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgApproveAndDispatchMultisigProposalParams)(nil)
+
+type fastReflection_MsgApproveAndDispatchMultisigProposalParams MsgApproveAndDispatchMultisigProposalParams
+
+func (x *MsgApproveAndDispatchMultisigProposalParams) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgApproveAndDispatchMultisigProposalParams)(x)
+}
+
+func (x *MsgApproveAndDispatchMultisigProposalParams) slowProtoReflect() protoreflect.Message {
+	mi := &file_multisig_v1_tx_proto_msgTypes[14]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgApproveAndDispatchMultisigProposalParams_messageType fastReflection_MsgApproveAndDispatchMultisigProposalParams_messageType
+var _ protoreflect.MessageType = fastReflection_MsgApproveAndDispatchMultisigProposalParams_messageType{}
+
+type fastReflection_MsgApproveAndDispatchMultisigProposalParams_messageType struct{}
+
+func (x fastReflection_MsgApproveAndDispatchMultisigProposalParams_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgApproveAndDispatchMultisigProposalParams)(nil)
+}
+func (x fastReflection_MsgApproveAndDispatchMultisigProposalParams_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgApproveAndDispatchMultisigProposalParams)
+}
+func (x fastReflection_MsgApproveAndDispatchMultisigProposalParams_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgApproveAndDispatchMultisigProposalParams
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgApproveAndDispatchMultisigProposalParams
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) Type() protoreflect.MessageType {
+	return _fastReflection_MsgApproveAndDispatchMultisigProposalParams_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) New() protoreflect.Message {
+	return new(fastReflection_MsgApproveAndDispatchMultisigProposalParams)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) Interface() protoreflect.ProtoMessage {
+	return (*MsgApproveAndDispatchMultisigProposalParams)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.MultisigAddress != "" {
+		value := protoreflect.ValueOfString(x.MultisigAddress)
+		if !f(fd_MsgApproveAndDispatchMultisigProposalParams_multisig_address, value) {
+			return
+		}
+	}
+	if x.ProposalId != uint64(0) {
+		value := protoreflect.ValueOfUint64(x.ProposalId)
+		if !f(fd_MsgApproveAndDispatchMultisigProposalParams_proposal_id, value) {
+			return
+		}
+	}
+	if x.Approver != "" {
+		value := protoreflect.ValueOfString(x.Approver)
+		if !f(fd_MsgApproveAndDispatchMultisigProposalParams_approver, value) {
+			return
+		}
+	}
+	if x.Message != nil {
+		value := protoreflect.ValueOfMessage(x.Message.ProtoReflect())
+		if !f(fd_MsgApproveAndDispatchMultisigProposalParams_message, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.multisig_address":
+		return x.MultisigAddress != ""
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.proposal_id":
+		return x.ProposalId != uint64(0)
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.approver":
+		return x.Approver != ""
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.message":
+		return x.Message != nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalParams"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalParams does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.multisig_address":
+		x.MultisigAddress = ""
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.proposal_id":
+		x.ProposalId = uint64(0)
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.approver":
+		x.Approver = ""
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.message":
+		x.Message = nil
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalParams"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalParams does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.multisig_address":
+		value := x.MultisigAddress
+		return protoreflect.ValueOfString(value)
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.proposal_id":
+		value := x.ProposalId
+		return protoreflect.ValueOfUint64(value)
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.approver":
+		value := x.Approver
+		return protoreflect.ValueOfString(value)
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.message":
+		value := x.Message
+		return protoreflect.ValueOfMessage(value.ProtoReflect())
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalParams"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalParams does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.multisig_address":
+		x.MultisigAddress = value.Interface().(string)
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.proposal_id":
+		x.ProposalId = value.Uint()
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.approver":
+		x.Approver = value.Interface().(string)
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.message":
+		x.Message = value.Message().Interface().(*anypb.Any)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalParams"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalParams does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.message":
+		if x.Message == nil {
+			x.Message = new(anypb.Any)
+		}
+		return protoreflect.ValueOfMessage(x.Message.ProtoReflect())
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.multisig_address":
+		panic(fmt.Errorf("field multisig_address of message multisig.v1.MsgApproveAndDispatchMultisigProposalParams is not mutable"))
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.proposal_id":
+		panic(fmt.Errorf("field proposal_id of message multisig.v1.MsgApproveAndDispatchMultisigProposalParams is not mutable"))
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.approver":
+		panic(fmt.Errorf("field approver of message multisig.v1.MsgApproveAndDispatchMultisigProposalParams is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalParams"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalParams does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.multisig_address":
+		return protoreflect.ValueOfString("")
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.proposal_id":
+		return protoreflect.ValueOfUint64(uint64(0))
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.approver":
+		return protoreflect.ValueOfString("")
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalParams.message":
+		m := new(anypb.Any)
+		return protoreflect.ValueOfMessage(m.ProtoReflect())
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalParams"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalParams does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in multisig.v1.MsgApproveAndDispatchMultisigProposalParams", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalParams) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgApproveAndDispatchMultisigProposalParams)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.MultisigAddress)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.ProposalId != 0 {
+			n += 1 + runtime.Sov(uint64(x.ProposalId))
+		}
+		l = len(x.Approver)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.Message != nil {
+			l = options.Size(x.Message)
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgApproveAndDispatchMultisigProposalParams)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if x.Message != nil {
+			encoded, err := options.Marshal(x.Message)
+			if err != nil {
+				return protoiface.MarshalOutput{
+					NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+					Buf:               input.Buf,
+				}, err
+			}
+			i -= len(encoded)
+			copy(dAtA[i:], encoded)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(encoded)))
+			i--
+			dAtA[i] = 0x2a
+		}
+		if len(x.Approver) > 0 {
+			i -= len(x.Approver)
+			copy(dAtA[i:], x.Approver)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.Approver)))
+			i--
+			dAtA[i] = 0x1a
+		}
+		if x.ProposalId != 0 {
+			i = runtime.EncodeVarint(dAtA, i, uint64(x.ProposalId))
+			i--
+			dAtA[i] = 0x10
+		}
+		if len(x.MultisigAddress) > 0 {
+			i -= len(x.MultisigAddress)
+			copy(dAtA[i:], x.MultisigAddress)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.MultisigAddress)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgApproveAndDispatchMultisigProposalParams)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgApproveAndDispatchMultisigProposalParams: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgApproveAndDispatchMultisigProposalParams: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field MultisigAddress", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.MultisigAddress = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 2:
+				if wireType != 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field ProposalId", wireType)
+				}
+				x.ProposalId = 0
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					x.ProposalId |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+			case 3:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Approver", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.Approver = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			case 5:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field Message", wireType)
+				}
+				var msglen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					msglen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if msglen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + msglen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if x.Message == nil {
+					x.Message = &anypb.Any{}
+				}
+				if err := options.Unmarshal(dAtA[iNdEx:postIndex], x.Message); err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
+	md_MsgApproveAndDispatchMultisigProposalResponse                  protoreflect.MessageDescriptor
+	fd_MsgApproveAndDispatchMultisigProposalResponse_transaction_hash protoreflect.FieldDescriptor
+)
+
+func init() {
+	file_multisig_v1_tx_proto_init()
+	md_MsgApproveAndDispatchMultisigProposalResponse = File_multisig_v1_tx_proto.Messages().ByName("MsgApproveAndDispatchMultisigProposalResponse")
+	fd_MsgApproveAndDispatchMultisigProposalResponse_transaction_hash = md_MsgApproveAndDispatchMultisigProposalResponse.Fields().ByName("transaction_hash")
+}
+
+var _ protoreflect.Message = (*fastReflection_MsgApproveAndDispatchMultisigProposalResponse)(nil)
+
+type fastReflection_MsgApproveAndDispatchMultisigProposalResponse MsgApproveAndDispatchMultisigProposalResponse
+
+func (x *MsgApproveAndDispatchMultisigProposalResponse) ProtoReflect() protoreflect.Message {
+	return (*fastReflection_MsgApproveAndDispatchMultisigProposalResponse)(x)
+}
+
+func (x *MsgApproveAndDispatchMultisigProposalResponse) slowProtoReflect() protoreflect.Message {
+	mi := &file_multisig_v1_tx_proto_msgTypes[15]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+var _fastReflection_MsgApproveAndDispatchMultisigProposalResponse_messageType fastReflection_MsgApproveAndDispatchMultisigProposalResponse_messageType
+var _ protoreflect.MessageType = fastReflection_MsgApproveAndDispatchMultisigProposalResponse_messageType{}
+
+type fastReflection_MsgApproveAndDispatchMultisigProposalResponse_messageType struct{}
+
+func (x fastReflection_MsgApproveAndDispatchMultisigProposalResponse_messageType) Zero() protoreflect.Message {
+	return (*fastReflection_MsgApproveAndDispatchMultisigProposalResponse)(nil)
+}
+func (x fastReflection_MsgApproveAndDispatchMultisigProposalResponse_messageType) New() protoreflect.Message {
+	return new(fastReflection_MsgApproveAndDispatchMultisigProposalResponse)
+}
+func (x fastReflection_MsgApproveAndDispatchMultisigProposalResponse_messageType) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgApproveAndDispatchMultisigProposalResponse
+}
+
+// Descriptor returns message descriptor, which contains only the protobuf
+// type information for the message.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) Descriptor() protoreflect.MessageDescriptor {
+	return md_MsgApproveAndDispatchMultisigProposalResponse
+}
+
+// Type returns the message type, which encapsulates both Go and protobuf
+// type information. If the Go type information is not needed,
+// it is recommended that the message descriptor be used instead.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) Type() protoreflect.MessageType {
+	return _fastReflection_MsgApproveAndDispatchMultisigProposalResponse_messageType
+}
+
+// New returns a newly allocated and mutable empty message.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) New() protoreflect.Message {
+	return new(fastReflection_MsgApproveAndDispatchMultisigProposalResponse)
+}
+
+// Interface unwraps the message reflection interface and
+// returns the underlying ProtoMessage interface.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) Interface() protoreflect.ProtoMessage {
+	return (*MsgApproveAndDispatchMultisigProposalResponse)(x)
+}
+
+// Range iterates over every populated field in an undefined order,
+// calling f for each field descriptor and value encountered.
+// Range returns immediately if f returns false.
+// While iterating, mutating operations may only be performed
+// on the current field descriptor.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) Range(f func(protoreflect.FieldDescriptor, protoreflect.Value) bool) {
+	if x.TransactionHash != "" {
+		value := protoreflect.ValueOfString(x.TransactionHash)
+		if !f(fd_MsgApproveAndDispatchMultisigProposalResponse_transaction_hash, value) {
+			return
+		}
+	}
+}
+
+// Has reports whether a field is populated.
+//
+// Some fields have the property of nullability where it is possible to
+// distinguish between the default value of a field and whether the field
+// was explicitly populated with the default value. Singular message fields,
+// member fields of a oneof, and proto2 scalar fields are nullable. Such
+// fields are populated only if explicitly set.
+//
+// In other cases (aside from the nullable cases above),
+// a proto3 scalar field is populated if it contains a non-zero value, and
+// a repeated field is populated if it is non-empty.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) Has(fd protoreflect.FieldDescriptor) bool {
+	switch fd.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalResponse.transaction_hash":
+		return x.TransactionHash != ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalResponse"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Clear clears the field such that a subsequent Has call reports false.
+//
+// Clearing an extension field clears both the extension type and value
+// associated with the given field number.
+//
+// Clear is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) Clear(fd protoreflect.FieldDescriptor) {
+	switch fd.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalResponse.transaction_hash":
+		x.TransactionHash = ""
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalResponse"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Get retrieves the value for a field.
+//
+// For unpopulated scalars, it returns the default value, where
+// the default value of a bytes scalar is guaranteed to be a copy.
+// For unpopulated composite types, it returns an empty, read-only view
+// of the value; to obtain a mutable reference, use Mutable.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) Get(descriptor protoreflect.FieldDescriptor) protoreflect.Value {
+	switch descriptor.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalResponse.transaction_hash":
+		value := x.TransactionHash
+		return protoreflect.ValueOfString(value)
+	default:
+		if descriptor.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalResponse"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalResponse does not contain field %s", descriptor.FullName()))
+	}
+}
+
+// Set stores the value for a field.
+//
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType.
+// When setting a composite type, it is unspecified whether the stored value
+// aliases the source's memory in any way. If the composite value is an
+// empty, read-only value, then it panics.
+//
+// Set is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) Set(fd protoreflect.FieldDescriptor, value protoreflect.Value) {
+	switch fd.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalResponse.transaction_hash":
+		x.TransactionHash = value.Interface().(string)
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalResponse"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// Mutable returns a mutable reference to a composite type.
+//
+// If the field is unpopulated, it may allocate a composite value.
+// For a field belonging to a oneof, it implicitly clears any other field
+// that may be currently set within the same oneof.
+// For extension fields, it implicitly stores the provided ExtensionType
+// if not already stored.
+// It panics if the field does not contain a composite type.
+//
+// Mutable is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) Mutable(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalResponse.transaction_hash":
+		panic(fmt.Errorf("field transaction_hash of message multisig.v1.MsgApproveAndDispatchMultisigProposalResponse is not mutable"))
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalResponse"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// NewField returns a new value that is assignable to the field
+// for the given descriptor. For scalars, this returns the default value.
+// For lists, maps, and messages, this returns a new, empty, mutable value.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) NewField(fd protoreflect.FieldDescriptor) protoreflect.Value {
+	switch fd.FullName() {
+	case "multisig.v1.MsgApproveAndDispatchMultisigProposalResponse.transaction_hash":
+		return protoreflect.ValueOfString("")
+	default:
+		if fd.IsExtension() {
+			panic(fmt.Errorf("proto3 declared messages do not support extensions: multisig.v1.MsgApproveAndDispatchMultisigProposalResponse"))
+		}
+		panic(fmt.Errorf("message multisig.v1.MsgApproveAndDispatchMultisigProposalResponse does not contain field %s", fd.FullName()))
+	}
+}
+
+// WhichOneof reports which field within the oneof is populated,
+// returning nil if none are populated.
+// It panics if the oneof descriptor does not belong to this message.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) WhichOneof(d protoreflect.OneofDescriptor) protoreflect.FieldDescriptor {
+	switch d.FullName() {
+	default:
+		panic(fmt.Errorf("%s is not a oneof field in multisig.v1.MsgApproveAndDispatchMultisigProposalResponse", d.FullName()))
+	}
+	panic("unreachable")
+}
+
+// GetUnknown retrieves the entire list of unknown fields.
+// The caller may only mutate the contents of the RawFields
+// if the mutated bytes are stored back into the message with SetUnknown.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) GetUnknown() protoreflect.RawFields {
+	return x.unknownFields
+}
+
+// SetUnknown stores an entire list of unknown fields.
+// The raw fields must be syntactically valid according to the wire format.
+// An implementation may panic if this is not the case.
+// Once stored, the caller must not mutate the content of the RawFields.
+// An empty RawFields may be passed to clear the fields.
+//
+// SetUnknown is a mutating operation and unsafe for concurrent use.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) SetUnknown(fields protoreflect.RawFields) {
+	x.unknownFields = fields
+}
+
+// IsValid reports whether the message is valid.
+//
+// An invalid message is an empty, read-only value.
+//
+// An invalid message often corresponds to a nil pointer of the concrete
+// message type, but the details are implementation dependent.
+// Validity is not part of the protobuf data model, and may not
+// be preserved in marshaling or other operations.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) IsValid() bool {
+	return x != nil
+}
+
+// ProtoMethods returns optional fastReflectionFeature-path implementations of various operations.
+// This method may return nil.
+//
+// The returned methods type is identical to
+// "google.golang.org/protobuf/runtime/protoiface".Methods.
+// Consult the protoiface package documentation for details.
+func (x *fastReflection_MsgApproveAndDispatchMultisigProposalResponse) ProtoMethods() *protoiface.Methods {
+	size := func(input protoiface.SizeInput) protoiface.SizeOutput {
+		x := input.Message.Interface().(*MsgApproveAndDispatchMultisigProposalResponse)
+		if x == nil {
+			return protoiface.SizeOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Size:              0,
+			}
+		}
+		options := runtime.SizeInputToOptions(input)
+		_ = options
+		var n int
+		var l int
+		_ = l
+		l = len(x.TransactionHash)
+		if l > 0 {
+			n += 1 + l + runtime.Sov(uint64(l))
+		}
+		if x.unknownFields != nil {
+			n += len(x.unknownFields)
+		}
+		return protoiface.SizeOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Size:              n,
+		}
+	}
+
+	marshal := func(input protoiface.MarshalInput) (protoiface.MarshalOutput, error) {
+		x := input.Message.Interface().(*MsgApproveAndDispatchMultisigProposalResponse)
+		if x == nil {
+			return protoiface.MarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Buf:               input.Buf,
+			}, nil
+		}
+		options := runtime.MarshalInputToOptions(input)
+		_ = options
+		size := options.Size(x)
+		dAtA := make([]byte, size)
+		i := len(dAtA)
+		_ = i
+		var l int
+		_ = l
+		if x.unknownFields != nil {
+			i -= len(x.unknownFields)
+			copy(dAtA[i:], x.unknownFields)
+		}
+		if len(x.TransactionHash) > 0 {
+			i -= len(x.TransactionHash)
+			copy(dAtA[i:], x.TransactionHash)
+			i = runtime.EncodeVarint(dAtA, i, uint64(len(x.TransactionHash)))
+			i--
+			dAtA[i] = 0xa
+		}
+		if input.Buf != nil {
+			input.Buf = append(input.Buf, dAtA...)
+		} else {
+			input.Buf = dAtA
+		}
+		return protoiface.MarshalOutput{
+			NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+			Buf:               input.Buf,
+		}, nil
+	}
+	unmarshal := func(input protoiface.UnmarshalInput) (protoiface.UnmarshalOutput, error) {
+		x := input.Message.Interface().(*MsgApproveAndDispatchMultisigProposalResponse)
+		if x == nil {
+			return protoiface.UnmarshalOutput{
+				NoUnkeyedLiterals: input.NoUnkeyedLiterals,
+				Flags:             input.Flags,
+			}, nil
+		}
+		options := runtime.UnmarshalInputToOptions(input)
+		_ = options
+		dAtA := input.Buf
+		l := len(dAtA)
+		iNdEx := 0
+		for iNdEx < l {
+			preIndex := iNdEx
+			var wire uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				wire |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			fieldNum := int32(wire >> 3)
+			wireType := int(wire & 0x7)
+			if wireType == 4 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgApproveAndDispatchMultisigProposalResponse: wiretype end group for non-group")
+			}
+			if fieldNum <= 0 {
+				return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: MsgApproveAndDispatchMultisigProposalResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			}
+			switch fieldNum {
+			case 1:
+				if wireType != 2 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, fmt.Errorf("proto: wrong wireType = %d for field TransactionHash", wireType)
+				}
+				var stringLen uint64
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrIntOverflow
+					}
+					if iNdEx >= l {
+						return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					stringLen |= uint64(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				intStringLen := int(stringLen)
+				if intStringLen < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				postIndex := iNdEx + intStringLen
+				if postIndex < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if postIndex > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				x.TransactionHash = string(dAtA[iNdEx:postIndex])
+				iNdEx = postIndex
+			default:
+				iNdEx = preIndex
+				skippy, err := runtime.Skip(dAtA[iNdEx:])
+				if err != nil {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, err
+				}
+				if (skippy < 0) || (iNdEx+skippy) < 0 {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, runtime.ErrInvalidLength
+				}
+				if (iNdEx + skippy) > l {
+					return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+				}
+				if !options.DiscardUnknown {
+					x.unknownFields = append(x.unknownFields, dAtA[iNdEx:iNdEx+skippy]...)
+				}
+				iNdEx += skippy
+			}
+		}
+
+		if iNdEx > l {
+			return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, io.ErrUnexpectedEOF
+		}
+		return protoiface.UnmarshalOutput{NoUnkeyedLiterals: input.NoUnkeyedLiterals, Flags: input.Flags}, nil
+	}
+	return &protoiface.Methods{
+		NoUnkeyedLiterals: struct{}{},
+		Flags:             protoiface.SupportMarshalDeterministic | protoiface.SupportUnmarshalDiscardUnknown,
+		Size:              size,
+		Marshal:           marshal,
+		Unmarshal:         unmarshal,
+		Merge:             nil,
+		CheckInitialized:  nil,
+	}
+}
+
+var (
 	md_MsgCancelMultisigProposalParams                  protoreflect.MessageDescriptor
 	fd_MsgCancelMultisigProposalParams_multisig_address protoreflect.FieldDescriptor
 	fd_MsgCancelMultisigProposalParams_proposal_id      protoreflect.FieldDescriptor
@@ -6505,7 +7536,7 @@ func (x *MsgCancelMultisigProposalParams) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgCancelMultisigProposalParams) slowProtoReflect() protoreflect.Message {
-	mi := &file_multisig_v1_tx_proto_msgTypes[14]
+	mi := &file_multisig_v1_tx_proto_msgTypes[16]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7031,7 +8062,7 @@ func (x *MsgCancelMultisigProposalResponse) ProtoReflect() protoreflect.Message 
 }
 
 func (x *MsgCancelMultisigProposalResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_multisig_v1_tx_proto_msgTypes[15]
+	mi := &file_multisig_v1_tx_proto_msgTypes[17]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7393,7 +8424,7 @@ func (x *MsgCleanupMultisigProposalParams) ProtoReflect() protoreflect.Message {
 }
 
 func (x *MsgCleanupMultisigProposalParams) slowProtoReflect() protoreflect.Message {
-	mi := &file_multisig_v1_tx_proto_msgTypes[16]
+	mi := &file_multisig_v1_tx_proto_msgTypes[18]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -7919,7 +8950,7 @@ func (x *MsgCleanupMultisigProposalResponse) ProtoReflect() protoreflect.Message
 }
 
 func (x *MsgCleanupMultisigProposalResponse) slowProtoReflect() protoreflect.Message {
-	mi := &file_multisig_v1_tx_proto_msgTypes[17]
+	mi := &file_multisig_v1_tx_proto_msgTypes[19]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8850,6 +9881,102 @@ func (*MsgApproveMultisigProposalResponse) Descriptor() ([]byte, []int) {
 	return file_multisig_v1_tx_proto_rawDescGZIP(), []int{13}
 }
 
+// MsgApproveMultisigProposalParams defines the request type to approve a multisig proposal
+type MsgApproveAndDispatchMultisigProposalParams struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	MultisigAddress string     `protobuf:"bytes,1,opt,name=multisig_address,json=multisigAddress,proto3" json:"multisig_address,omitempty"`
+	ProposalId      uint64     `protobuf:"varint,2,opt,name=proposal_id,json=proposalId,proto3" json:"proposal_id,omitempty"`
+	Approver        string     `protobuf:"bytes,3,opt,name=approver,proto3" json:"approver,omitempty"`
+	Message         *anypb.Any `protobuf:"bytes,5,opt,name=message,proto3" json:"message,omitempty"`
+}
+
+func (x *MsgApproveAndDispatchMultisigProposalParams) Reset() {
+	*x = MsgApproveAndDispatchMultisigProposalParams{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_multisig_v1_tx_proto_msgTypes[14]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgApproveAndDispatchMultisigProposalParams) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgApproveAndDispatchMultisigProposalParams) ProtoMessage() {}
+
+// Deprecated: Use MsgApproveAndDispatchMultisigProposalParams.ProtoReflect.Descriptor instead.
+func (*MsgApproveAndDispatchMultisigProposalParams) Descriptor() ([]byte, []int) {
+	return file_multisig_v1_tx_proto_rawDescGZIP(), []int{14}
+}
+
+func (x *MsgApproveAndDispatchMultisigProposalParams) GetMultisigAddress() string {
+	if x != nil {
+		return x.MultisigAddress
+	}
+	return ""
+}
+
+func (x *MsgApproveAndDispatchMultisigProposalParams) GetProposalId() uint64 {
+	if x != nil {
+		return x.ProposalId
+	}
+	return 0
+}
+
+func (x *MsgApproveAndDispatchMultisigProposalParams) GetApprover() string {
+	if x != nil {
+		return x.Approver
+	}
+	return ""
+}
+
+func (x *MsgApproveAndDispatchMultisigProposalParams) GetMessage() *anypb.Any {
+	if x != nil {
+		return x.Message
+	}
+	return nil
+}
+
+// MsgApproveMultisigProposalResponse defines the response structure of approving a multisig proposal
+type MsgApproveAndDispatchMultisigProposalResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TransactionHash string `protobuf:"bytes,1,opt,name=transaction_hash,json=transactionHash,proto3" json:"transaction_hash,omitempty"`
+}
+
+func (x *MsgApproveAndDispatchMultisigProposalResponse) Reset() {
+	*x = MsgApproveAndDispatchMultisigProposalResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_multisig_v1_tx_proto_msgTypes[15]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *MsgApproveAndDispatchMultisigProposalResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MsgApproveAndDispatchMultisigProposalResponse) ProtoMessage() {}
+
+// Deprecated: Use MsgApproveAndDispatchMultisigProposalResponse.ProtoReflect.Descriptor instead.
+func (*MsgApproveAndDispatchMultisigProposalResponse) Descriptor() ([]byte, []int) {
+	return file_multisig_v1_tx_proto_rawDescGZIP(), []int{15}
+}
+
+func (x *MsgApproveAndDispatchMultisigProposalResponse) GetTransactionHash() string {
+	if x != nil {
+		return x.TransactionHash
+	}
+	return ""
+}
+
 // MsgCancelMultisigProposalParams defines the request type to reject a multisig proposal
 type MsgCancelMultisigProposalParams struct {
 	state         protoimpl.MessageState
@@ -8864,7 +9991,7 @@ type MsgCancelMultisigProposalParams struct {
 func (x *MsgCancelMultisigProposalParams) Reset() {
 	*x = MsgCancelMultisigProposalParams{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_multisig_v1_tx_proto_msgTypes[14]
+		mi := &file_multisig_v1_tx_proto_msgTypes[16]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8878,7 +10005,7 @@ func (*MsgCancelMultisigProposalParams) ProtoMessage() {}
 
 // Deprecated: Use MsgCancelMultisigProposalParams.ProtoReflect.Descriptor instead.
 func (*MsgCancelMultisigProposalParams) Descriptor() ([]byte, []int) {
-	return file_multisig_v1_tx_proto_rawDescGZIP(), []int{14}
+	return file_multisig_v1_tx_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *MsgCancelMultisigProposalParams) GetMultisigAddress() string {
@@ -8912,7 +10039,7 @@ type MsgCancelMultisigProposalResponse struct {
 func (x *MsgCancelMultisigProposalResponse) Reset() {
 	*x = MsgCancelMultisigProposalResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_multisig_v1_tx_proto_msgTypes[15]
+		mi := &file_multisig_v1_tx_proto_msgTypes[17]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8926,7 +10053,7 @@ func (*MsgCancelMultisigProposalResponse) ProtoMessage() {}
 
 // Deprecated: Use MsgCancelMultisigProposalResponse.ProtoReflect.Descriptor instead.
 func (*MsgCancelMultisigProposalResponse) Descriptor() ([]byte, []int) {
-	return file_multisig_v1_tx_proto_rawDescGZIP(), []int{15}
+	return file_multisig_v1_tx_proto_rawDescGZIP(), []int{17}
 }
 
 // MsgCleanupMultisigProposalParams defines the request type to clear all multisig proposals after account deletion
@@ -8943,7 +10070,7 @@ type MsgCleanupMultisigProposalParams struct {
 func (x *MsgCleanupMultisigProposalParams) Reset() {
 	*x = MsgCleanupMultisigProposalParams{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_multisig_v1_tx_proto_msgTypes[16]
+		mi := &file_multisig_v1_tx_proto_msgTypes[18]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -8957,7 +10084,7 @@ func (*MsgCleanupMultisigProposalParams) ProtoMessage() {}
 
 // Deprecated: Use MsgCleanupMultisigProposalParams.ProtoReflect.Descriptor instead.
 func (*MsgCleanupMultisigProposalParams) Descriptor() ([]byte, []int) {
-	return file_multisig_v1_tx_proto_rawDescGZIP(), []int{16}
+	return file_multisig_v1_tx_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *MsgCleanupMultisigProposalParams) GetMultisigAddress() string {
@@ -8991,7 +10118,7 @@ type MsgCleanupMultisigProposalResponse struct {
 func (x *MsgCleanupMultisigProposalResponse) Reset() {
 	*x = MsgCleanupMultisigProposalResponse{}
 	if protoimpl.UnsafeEnabled {
-		mi := &file_multisig_v1_tx_proto_msgTypes[17]
+		mi := &file_multisig_v1_tx_proto_msgTypes[19]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		ms.StoreMessageInfo(mi)
 	}
@@ -9005,7 +10132,7 @@ func (*MsgCleanupMultisigProposalResponse) ProtoMessage() {}
 
 // Deprecated: Use MsgCleanupMultisigProposalResponse.ProtoReflect.Descriptor instead.
 func (*MsgCleanupMultisigProposalResponse) Descriptor() ([]byte, []int) {
-	return file_multisig_v1_tx_proto_rawDescGZIP(), []int{17}
+	return file_multisig_v1_tx_proto_rawDescGZIP(), []int{19}
 }
 
 var File_multisig_v1_tx_proto protoreflect.FileDescriptor
@@ -9127,112 +10254,145 @@ var file_multisig_v1_tx_proto_rawDesc = []byte{
 	0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x08, 0x61, 0x70, 0x70,
 	0x72, 0x6f, 0x76, 0x65, 0x72, 0x22, 0x24, 0x0a, 0x22, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72,
 	0x6f, 0x76, 0x65, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f,
-	0x73, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xbd, 0x01, 0x0a, 0x1f,
-	0x4d, 0x73, 0x67, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69,
-	0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12,
-	0x43, 0x0a, 0x10, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x5f, 0x61, 0x64, 0x64, 0x72,
-	0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63,
-	0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72,
-	0x69, 0x6e, 0x67, 0x52, 0x0f, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41, 0x64, 0x64,
-	0x72, 0x65, 0x73, 0x73, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c,
-	0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x70, 0x72, 0x6f, 0x70, 0x6f,
-	0x73, 0x61, 0x6c, 0x49, 0x64, 0x12, 0x34, 0x0a, 0x08, 0x72, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x65,
-	0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73,
-	0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e,
-	0x67, 0x52, 0x08, 0x72, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x65, 0x72, 0x22, 0x23, 0x0a, 0x21, 0x4d,
-	0x73, 0x67, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67,
-	0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x22, 0xbc, 0x01, 0x0a, 0x20, 0x4d, 0x73, 0x67, 0x43, 0x6c, 0x65, 0x61, 0x6e, 0x75, 0x70, 0x4d,
-	0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x50,
-	0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x43, 0x0a, 0x10, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69,
-	0x67, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42,
-	0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72,
-	0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x0f, 0x6d, 0x75, 0x6c, 0x74, 0x69,
-	0x73, 0x69, 0x67, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x72,
-	0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52,
-	0x0a, 0x70, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x49, 0x64, 0x12, 0x32, 0x0a, 0x07, 0x72,
-	0x65, 0x6d, 0x6f, 0x76, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4,
-	0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
-	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x07, 0x72, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x72, 0x22,
-	0x24, 0x0a, 0x22, 0x4d, 0x73, 0x67, 0x43, 0x6c, 0x65, 0x61, 0x6e, 0x75, 0x70, 0x4d, 0x75, 0x6c,
+	0x73, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0x96, 0x02, 0x0a, 0x2b,
+	0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x41, 0x6e, 0x64, 0x44, 0x69, 0x73,
+	0x70, 0x61, 0x74, 0x63, 0x68, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f,
+	0x70, 0x6f, 0x73, 0x61, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x43, 0x0a, 0x10, 0x6d,
+	0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
+	0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52,
+	0x0f, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
+	0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x5f, 0x69, 0x64, 0x18,
+	0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x70, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x49,
+	0x64, 0x12, 0x34, 0x0a, 0x08, 0x61, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x72, 0x18, 0x03, 0x20,
+	0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e,
+	0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x08, 0x61,
+	0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x72, 0x12, 0x4b, 0x0a, 0x07, 0x6d, 0x65, 0x73, 0x73, 0x61,
+	0x67, 0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x14, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
+	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x41, 0x6e, 0x79, 0x42, 0x1b,
+	0xca, 0xb4, 0x2d, 0x17, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x62, 0x61, 0x73, 0x65, 0x2e,
+	0x76, 0x31, 0x62, 0x65, 0x74, 0x61, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x52, 0x07, 0x6d, 0x65, 0x73,
+	0x73, 0x61, 0x67, 0x65, 0x22, 0x5a, 0x0a, 0x2d, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f,
+	0x76, 0x65, 0x41, 0x6e, 0x64, 0x44, 0x69, 0x73, 0x70, 0x61, 0x74, 0x63, 0x68, 0x4d, 0x75, 0x6c,
 	0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x52, 0x65, 0x73,
-	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0x89, 0x08, 0x0a, 0x03, 0x4d, 0x73, 0x67, 0x12, 0x52, 0x0a,
-	0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x1c, 0x2e,
-	0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x55,
-	0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x24, 0x2e, 0x6d, 0x75,
-	0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64,
-	0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
-	0x65, 0x12, 0x73, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x75, 0x6c, 0x74, 0x69,
-	0x73, 0x69, 0x67, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x2b, 0x2e, 0x6d, 0x75, 0x6c,
-	0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61,
-	0x74, 0x65, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e,
-	0x74, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2d, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73,
-	0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d,
-	0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x67, 0x0a, 0x11, 0x41, 0x64, 0x64, 0x4d, 0x75, 0x6c,
-	0x74, 0x69, 0x73, 0x69, 0x67, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x72, 0x12, 0x27, 0x2e, 0x6d, 0x75,
-	0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64,
-	0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x72, 0x50, 0x61,
-	0x72, 0x61, 0x6d, 0x73, 0x1a, 0x29, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e,
-	0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69,
-	0x67, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x75, 0x0a, 0x15, 0x43, 0x6c, 0x65, 0x61, 0x6e, 0x75, 0x70, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73,
-	0x69, 0x67, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x72, 0x12, 0x2c, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69,
-	0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6c, 0x65, 0x61, 0x6e, 0x75,
-	0x70, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2e, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69,
-	0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6c, 0x65, 0x61, 0x6e, 0x75, 0x70, 0x4d,
-	0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65,
-	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x68, 0x0a, 0x0c, 0x53, 0x65, 0x74, 0x54, 0x68, 0x72,
-	0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x12, 0x2a, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69,
-	0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x53, 0x65, 0x74, 0x4d, 0x75, 0x6c, 0x74, 0x69,
-	0x73, 0x69, 0x67, 0x54, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x50, 0x61, 0x72, 0x61,
-	0x6d, 0x73, 0x1a, 0x2c, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31,
-	0x2e, 0x4d, 0x73, 0x67, 0x53, 0x65, 0x74, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x54,
-	0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
-	0x12, 0x7a, 0x0a, 0x1a, 0x49, 0x6e, 0x69, 0x74, 0x69, 0x61, 0x6c, 0x69, 0x7a, 0x65, 0x4d, 0x75,
-	0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x12, 0x30,
-	0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67,
-	0x49, 0x6e, 0x69, 0x74, 0x69, 0x61, 0x6c, 0x69, 0x7a, 0x65, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73,
-	0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
-	0x1a, 0x2a, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d,
-	0x73, 0x67, 0x49, 0x6e, 0x69, 0x74, 0x69, 0x61, 0x6c, 0x69, 0x7a, 0x65, 0x4d, 0x75, 0x6c, 0x74,
-	0x69, 0x73, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x79, 0x0a, 0x17,
-	0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50,
-	0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x12, 0x2d, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73,
-	0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65,
-	0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c,
-	0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2f, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69,
-	0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4d,
-	0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x76, 0x0a, 0x16, 0x43, 0x61, 0x6e, 0x63, 0x65,
-	0x6c, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61,
-	0x6c, 0x12, 0x2c, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e,
-	0x4d, 0x73, 0x67, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69,
-	0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a,
-	0x2e, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73,
-	0x67, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50,
-	0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
-	0x79, 0x0a, 0x17, 0x43, 0x6c, 0x65, 0x61, 0x6e, 0x75, 0x70, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73,
-	0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x12, 0x2d, 0x2e, 0x6d, 0x75, 0x6c,
-	0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6c, 0x65, 0x61,
-	0x6e, 0x75, 0x70, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f,
-	0x73, 0x61, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2f, 0x2e, 0x6d, 0x75, 0x6c, 0x74,
-	0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6c, 0x65, 0x61, 0x6e,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x29, 0x0a, 0x10, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x68, 0x61, 0x73, 0x68, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0f, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x48, 0x61, 0x73, 0x68,
+	0x22, 0xbd, 0x01, 0x0a, 0x1f, 0x4d, 0x73, 0x67, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d, 0x75,
+	0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x50, 0x61,
+	0x72, 0x61, 0x6d, 0x73, 0x12, 0x43, 0x0a, 0x10, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67,
+	0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18,
+	0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65,
+	0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x0f, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73,
+	0x69, 0x67, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x72, 0x6f,
+	0x70, 0x6f, 0x73, 0x61, 0x6c, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a,
+	0x70, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x49, 0x64, 0x12, 0x34, 0x0a, 0x08, 0x72, 0x65,
+	0x6a, 0x65, 0x63, 0x74, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4,
+	0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73,
+	0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x08, 0x72, 0x65, 0x6a, 0x65, 0x63, 0x74, 0x65, 0x72,
+	0x22, 0x23, 0x0a, 0x21, 0x4d, 0x73, 0x67, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d, 0x75, 0x6c,
+	0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x22, 0xbc, 0x01, 0x0a, 0x20, 0x4d, 0x73, 0x67, 0x43, 0x6c, 0x65,
+	0x61, 0x6e, 0x75, 0x70, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70,
+	0x6f, 0x73, 0x61, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x12, 0x43, 0x0a, 0x10, 0x6d, 0x75,
+	0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x5f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73,
+	0x2e, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x0f,
+	0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x12,
+	0x1f, 0x0a, 0x0b, 0x70, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x5f, 0x69, 0x64, 0x18, 0x02,
+	0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x70, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x49, 0x64,
+	0x12, 0x32, 0x0a, 0x07, 0x72, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28,
+	0x09, 0x42, 0x18, 0xd2, 0xb4, 0x2d, 0x14, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2e, 0x41, 0x64,
+	0x64, 0x72, 0x65, 0x73, 0x73, 0x53, 0x74, 0x72, 0x69, 0x6e, 0x67, 0x52, 0x07, 0x72, 0x65, 0x6d,
+	0x6f, 0x76, 0x65, 0x72, 0x22, 0x24, 0x0a, 0x22, 0x4d, 0x73, 0x67, 0x43, 0x6c, 0x65, 0x61, 0x6e,
 	0x75, 0x70, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73,
-	0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7, 0xb0, 0x2a,
-	0x01, 0x42, 0xa9, 0x01, 0x0a, 0x0f, 0x63, 0x6f, 0x6d, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73,
-	0x69, 0x67, 0x2e, 0x76, 0x31, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01,
-	0x5a, 0x40, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x44, 0x61, 0x65,
-	0x76, 0x4d, 0x69, 0x74, 0x68, 0x72, 0x61, 0x6e, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f, 0x73, 0x2d,
-	0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x73, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6d, 0x75, 0x6c, 0x74,
-	0x69, 0x73, 0x69, 0x67, 0x2f, 0x76, 0x31, 0x3b, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67,
-	0x76, 0x31, 0xa2, 0x02, 0x03, 0x4d, 0x58, 0x58, 0xaa, 0x02, 0x0b, 0x4d, 0x75, 0x6c, 0x74, 0x69,
-	0x73, 0x69, 0x67, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x0b, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69,
-	0x67, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x17, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x5c,
-	0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
-	0x0c, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x32, 0xa6, 0x09, 0x0a, 0x03, 0x4d,
+	0x73, 0x67, 0x12, 0x52, 0x0a, 0x0c, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61,
+	0x6d, 0x73, 0x12, 0x1c, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31,
+	0x2e, 0x4d, 0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73,
+	0x1a, 0x24, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d,
+	0x73, 0x67, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x52, 0x65,
+	0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x73, 0x0a, 0x15, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65,
+	0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12,
+	0x2b, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73,
+	0x67, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41,
+	0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2d, 0x2e, 0x6d,
+	0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x72,
+	0x65, 0x61, 0x74, 0x65, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41, 0x63, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x67, 0x0a, 0x11, 0x41,
+	0x64, 0x64, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x72,
+	0x12, 0x27, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d,
+	0x73, 0x67, 0x41, 0x64, 0x64, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x53, 0x69, 0x67,
+	0x6e, 0x65, 0x72, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x29, 0x2e, 0x6d, 0x75, 0x6c, 0x74,
+	0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x64, 0x64, 0x4d, 0x75,
+	0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
+	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x75, 0x0a, 0x15, 0x43, 0x6c, 0x65, 0x61, 0x6e, 0x75, 0x70, 0x4d,
+	0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x53, 0x69, 0x67, 0x6e, 0x65, 0x72, 0x12, 0x2c, 0x2e,
+	0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43,
+	0x6c, 0x65, 0x61, 0x6e, 0x75, 0x70, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41, 0x63,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2e, 0x2e, 0x6d, 0x75,
+	0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6c, 0x65,
+	0x61, 0x6e, 0x75, 0x70, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x41, 0x63, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x68, 0x0a, 0x0c, 0x53,
+	0x65, 0x74, 0x54, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x12, 0x2a, 0x2e, 0x6d, 0x75,
+	0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x53, 0x65, 0x74,
+	0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x54, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c,
+	0x64, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2c, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73,
+	0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x53, 0x65, 0x74, 0x4d, 0x75, 0x6c, 0x74,
+	0x69, 0x73, 0x69, 0x67, 0x54, 0x68, 0x72, 0x65, 0x73, 0x68, 0x6f, 0x6c, 0x64, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x7a, 0x0a, 0x1a, 0x49, 0x6e, 0x69, 0x74, 0x69, 0x61, 0x6c,
+	0x69, 0x7a, 0x65, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f,
+	0x73, 0x61, 0x6c, 0x12, 0x30, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76,
+	0x31, 0x2e, 0x4d, 0x73, 0x67, 0x49, 0x6e, 0x69, 0x74, 0x69, 0x61, 0x6c, 0x69, 0x7a, 0x65, 0x4d,
+	0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x50,
+	0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2a, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67,
+	0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x49, 0x6e, 0x69, 0x74, 0x69, 0x61, 0x6c, 0x69, 0x7a,
+	0x65, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x79, 0x0a, 0x17, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x4d, 0x75, 0x6c, 0x74,
+	0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x12, 0x2d, 0x2e, 0x6d,
+	0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x70,
+	0x70, 0x72, 0x6f, 0x76, 0x65, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f,
+	0x70, 0x6f, 0x73, 0x61, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2f, 0x2e, 0x6d, 0x75,
+	0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70,
+	0x72, 0x6f, 0x76, 0x65, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70,
+	0x6f, 0x73, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x9a, 0x01, 0x0a,
+	0x22, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x41, 0x6e, 0x64, 0x44, 0x69, 0x73, 0x70, 0x61,
+	0x74, 0x63, 0x68, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f,
+	0x73, 0x61, 0x6c, 0x12, 0x38, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76,
+	0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41, 0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x41, 0x6e, 0x64, 0x44,
+	0x69, 0x73, 0x70, 0x61, 0x74, 0x63, 0x68, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50,
+	0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x3a, 0x2e,
+	0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x41,
+	0x70, 0x70, 0x72, 0x6f, 0x76, 0x65, 0x41, 0x6e, 0x64, 0x44, 0x69, 0x73, 0x70, 0x61, 0x74, 0x63,
+	0x68, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61,
+	0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x76, 0x0a, 0x16, 0x43, 0x61, 0x6e,
+	0x63, 0x65, 0x6c, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f,
+	0x73, 0x61, 0x6c, 0x12, 0x2c, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76,
+	0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d, 0x75, 0x6c, 0x74, 0x69,
+	0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d,
+	0x73, 0x1a, 0x2e, 0x2e, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e,
+	0x4d, 0x73, 0x67, 0x43, 0x61, 0x6e, 0x63, 0x65, 0x6c, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69,
+	0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x79, 0x0a, 0x17, 0x43, 0x6c, 0x65, 0x61, 0x6e, 0x75, 0x70, 0x4d, 0x75, 0x6c, 0x74,
+	0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70, 0x6f, 0x73, 0x61, 0x6c, 0x12, 0x2d, 0x2e, 0x6d,
+	0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6c,
+	0x65, 0x61, 0x6e, 0x75, 0x70, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f,
+	0x70, 0x6f, 0x73, 0x61, 0x6c, 0x50, 0x61, 0x72, 0x61, 0x6d, 0x73, 0x1a, 0x2f, 0x2e, 0x6d, 0x75,
+	0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x2e, 0x4d, 0x73, 0x67, 0x43, 0x6c, 0x65,
+	0x61, 0x6e, 0x75, 0x70, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x50, 0x72, 0x6f, 0x70,
+	0x6f, 0x73, 0x61, 0x6c, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x1a, 0x05, 0x80, 0xe7,
+	0xb0, 0x2a, 0x01, 0x42, 0xa9, 0x01, 0x0a, 0x0f, 0x63, 0x6f, 0x6d, 0x2e, 0x6d, 0x75, 0x6c, 0x74,
+	0x69, 0x73, 0x69, 0x67, 0x2e, 0x76, 0x31, 0x42, 0x07, 0x54, 0x78, 0x50, 0x72, 0x6f, 0x74, 0x6f,
+	0x50, 0x01, 0x5a, 0x40, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x44,
+	0x61, 0x65, 0x76, 0x4d, 0x69, 0x74, 0x68, 0x72, 0x61, 0x6e, 0x2f, 0x63, 0x6f, 0x73, 0x6d, 0x6f,
+	0x73, 0x2d, 0x6d, 0x6f, 0x64, 0x75, 0x6c, 0x65, 0x73, 0x2f, 0x61, 0x70, 0x69, 0x2f, 0x6d, 0x75,
+	0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x2f, 0x76, 0x31, 0x3b, 0x6d, 0x75, 0x6c, 0x74, 0x69, 0x73,
+	0x69, 0x67, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x4d, 0x58, 0x58, 0xaa, 0x02, 0x0b, 0x4d, 0x75, 0x6c,
+	0x74, 0x69, 0x73, 0x69, 0x67, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x0b, 0x4d, 0x75, 0x6c, 0x74, 0x69,
+	0x73, 0x69, 0x67, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x17, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69,
+	0x67, 0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61,
+	0xea, 0x02, 0x0c, 0x4d, 0x75, 0x6c, 0x74, 0x69, 0x73, 0x69, 0x67, 0x3a, 0x3a, 0x56, 0x31, 0x62,
+	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -9247,57 +10407,62 @@ func file_multisig_v1_tx_proto_rawDescGZIP() []byte {
 	return file_multisig_v1_tx_proto_rawDescData
 }
 
-var file_multisig_v1_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 18)
+var file_multisig_v1_tx_proto_msgTypes = make([]protoimpl.MessageInfo, 20)
 var file_multisig_v1_tx_proto_goTypes = []interface{}{
-	(*MsgUpdateParams)(nil),                     // 0: multisig.v1.MsgUpdateParams
-	(*MsgUpdateParamsResponse)(nil),             // 1: multisig.v1.MsgUpdateParamsResponse
-	(*MsgCreateMultisigAccountParams)(nil),      // 2: multisig.v1.MsgCreateMultisigAccountParams
-	(*MsgCreateMultisigAccountResponse)(nil),    // 3: multisig.v1.MsgCreateMultisigAccountResponse
-	(*MsgAddMultisigSignerParams)(nil),          // 4: multisig.v1.MsgAddMultisigSignerParams
-	(*MsgAddMultisigSignerResponse)(nil),        // 5: multisig.v1.MsgAddMultisigSignerResponse
-	(*MsgCleanupMultisigAccountParams)(nil),     // 6: multisig.v1.MsgCleanupMultisigAccountParams
-	(*MsgCleanupMultisigAccountResponse)(nil),   // 7: multisig.v1.MsgCleanupMultisigAccountResponse
-	(*MsgSetMultisigThresholdParams)(nil),       // 8: multisig.v1.MsgSetMultisigThresholdParams
-	(*MsgSetMultisigThresholdResponse)(nil),     // 9: multisig.v1.MsgSetMultisigThresholdResponse
-	(*MsgInitializeMultisigProposalParams)(nil), // 10: multisig.v1.MsgInitializeMultisigProposalParams
-	(*MsgInitializeMultisigResponse)(nil),       // 11: multisig.v1.MsgInitializeMultisigResponse
-	(*MsgApproveMultisigProposalParams)(nil),    // 12: multisig.v1.MsgApproveMultisigProposalParams
-	(*MsgApproveMultisigProposalResponse)(nil),  // 13: multisig.v1.MsgApproveMultisigProposalResponse
-	(*MsgCancelMultisigProposalParams)(nil),     // 14: multisig.v1.MsgCancelMultisigProposalParams
-	(*MsgCancelMultisigProposalResponse)(nil),   // 15: multisig.v1.MsgCancelMultisigProposalResponse
-	(*MsgCleanupMultisigProposalParams)(nil),    // 16: multisig.v1.MsgCleanupMultisigProposalParams
-	(*MsgCleanupMultisigProposalResponse)(nil),  // 17: multisig.v1.MsgCleanupMultisigProposalResponse
-	(*Params)(nil),            // 18: multisig.v1.Params
-	(MultisigProposalType)(0), // 19: multisig.v1.MultisigProposalType
-	(*anypb.Any)(nil),         // 20: google.protobuf.Any
+	(*MsgUpdateParams)(nil),                               // 0: multisig.v1.MsgUpdateParams
+	(*MsgUpdateParamsResponse)(nil),                       // 1: multisig.v1.MsgUpdateParamsResponse
+	(*MsgCreateMultisigAccountParams)(nil),                // 2: multisig.v1.MsgCreateMultisigAccountParams
+	(*MsgCreateMultisigAccountResponse)(nil),              // 3: multisig.v1.MsgCreateMultisigAccountResponse
+	(*MsgAddMultisigSignerParams)(nil),                    // 4: multisig.v1.MsgAddMultisigSignerParams
+	(*MsgAddMultisigSignerResponse)(nil),                  // 5: multisig.v1.MsgAddMultisigSignerResponse
+	(*MsgCleanupMultisigAccountParams)(nil),               // 6: multisig.v1.MsgCleanupMultisigAccountParams
+	(*MsgCleanupMultisigAccountResponse)(nil),             // 7: multisig.v1.MsgCleanupMultisigAccountResponse
+	(*MsgSetMultisigThresholdParams)(nil),                 // 8: multisig.v1.MsgSetMultisigThresholdParams
+	(*MsgSetMultisigThresholdResponse)(nil),               // 9: multisig.v1.MsgSetMultisigThresholdResponse
+	(*MsgInitializeMultisigProposalParams)(nil),           // 10: multisig.v1.MsgInitializeMultisigProposalParams
+	(*MsgInitializeMultisigResponse)(nil),                 // 11: multisig.v1.MsgInitializeMultisigResponse
+	(*MsgApproveMultisigProposalParams)(nil),              // 12: multisig.v1.MsgApproveMultisigProposalParams
+	(*MsgApproveMultisigProposalResponse)(nil),            // 13: multisig.v1.MsgApproveMultisigProposalResponse
+	(*MsgApproveAndDispatchMultisigProposalParams)(nil),   // 14: multisig.v1.MsgApproveAndDispatchMultisigProposalParams
+	(*MsgApproveAndDispatchMultisigProposalResponse)(nil), // 15: multisig.v1.MsgApproveAndDispatchMultisigProposalResponse
+	(*MsgCancelMultisigProposalParams)(nil),               // 16: multisig.v1.MsgCancelMultisigProposalParams
+	(*MsgCancelMultisigProposalResponse)(nil),             // 17: multisig.v1.MsgCancelMultisigProposalResponse
+	(*MsgCleanupMultisigProposalParams)(nil),              // 18: multisig.v1.MsgCleanupMultisigProposalParams
+	(*MsgCleanupMultisigProposalResponse)(nil),            // 19: multisig.v1.MsgCleanupMultisigProposalResponse
+	(*Params)(nil),            // 20: multisig.v1.Params
+	(MultisigProposalType)(0), // 21: multisig.v1.MultisigProposalType
+	(*anypb.Any)(nil),         // 22: google.protobuf.Any
 }
 var file_multisig_v1_tx_proto_depIdxs = []int32{
-	18, // 0: multisig.v1.MsgUpdateParams.params:type_name -> multisig.v1.Params
-	19, // 1: multisig.v1.MsgCreateMultisigAccountParams.permission:type_name -> multisig.v1.MultisigProposalType
-	20, // 2: multisig.v1.MsgInitializeMultisigProposalParams.message:type_name -> google.protobuf.Any
-	0,  // 3: multisig.v1.Msg.UpdateParams:input_type -> multisig.v1.MsgUpdateParams
-	2,  // 4: multisig.v1.Msg.CreateMultisigAccount:input_type -> multisig.v1.MsgCreateMultisigAccountParams
-	4,  // 5: multisig.v1.Msg.AddMultisigSigner:input_type -> multisig.v1.MsgAddMultisigSignerParams
-	6,  // 6: multisig.v1.Msg.CleanupMultisigSigner:input_type -> multisig.v1.MsgCleanupMultisigAccountParams
-	8,  // 7: multisig.v1.Msg.SetThreshold:input_type -> multisig.v1.MsgSetMultisigThresholdParams
-	10, // 8: multisig.v1.Msg.InitializeMultisigProposal:input_type -> multisig.v1.MsgInitializeMultisigProposalParams
-	12, // 9: multisig.v1.Msg.ApproveMultisigProposal:input_type -> multisig.v1.MsgApproveMultisigProposalParams
-	14, // 10: multisig.v1.Msg.CancelMultisigProposal:input_type -> multisig.v1.MsgCancelMultisigProposalParams
-	16, // 11: multisig.v1.Msg.CleanupMultisigProposal:input_type -> multisig.v1.MsgCleanupMultisigProposalParams
-	1,  // 12: multisig.v1.Msg.UpdateParams:output_type -> multisig.v1.MsgUpdateParamsResponse
-	3,  // 13: multisig.v1.Msg.CreateMultisigAccount:output_type -> multisig.v1.MsgCreateMultisigAccountResponse
-	5,  // 14: multisig.v1.Msg.AddMultisigSigner:output_type -> multisig.v1.MsgAddMultisigSignerResponse
-	7,  // 15: multisig.v1.Msg.CleanupMultisigSigner:output_type -> multisig.v1.MsgCleanupMultisigAccountResponse
-	9,  // 16: multisig.v1.Msg.SetThreshold:output_type -> multisig.v1.MsgSetMultisigThresholdResponse
-	11, // 17: multisig.v1.Msg.InitializeMultisigProposal:output_type -> multisig.v1.MsgInitializeMultisigResponse
-	13, // 18: multisig.v1.Msg.ApproveMultisigProposal:output_type -> multisig.v1.MsgApproveMultisigProposalResponse
-	15, // 19: multisig.v1.Msg.CancelMultisigProposal:output_type -> multisig.v1.MsgCancelMultisigProposalResponse
-	17, // 20: multisig.v1.Msg.CleanupMultisigProposal:output_type -> multisig.v1.MsgCleanupMultisigProposalResponse
-	12, // [12:21] is the sub-list for method output_type
-	3,  // [3:12] is the sub-list for method input_type
-	3,  // [3:3] is the sub-list for extension type_name
-	3,  // [3:3] is the sub-list for extension extendee
-	0,  // [0:3] is the sub-list for field type_name
+	20, // 0: multisig.v1.MsgUpdateParams.params:type_name -> multisig.v1.Params
+	21, // 1: multisig.v1.MsgCreateMultisigAccountParams.permission:type_name -> multisig.v1.MultisigProposalType
+	22, // 2: multisig.v1.MsgInitializeMultisigProposalParams.message:type_name -> google.protobuf.Any
+	22, // 3: multisig.v1.MsgApproveAndDispatchMultisigProposalParams.message:type_name -> google.protobuf.Any
+	0,  // 4: multisig.v1.Msg.UpdateParams:input_type -> multisig.v1.MsgUpdateParams
+	2,  // 5: multisig.v1.Msg.CreateMultisigAccount:input_type -> multisig.v1.MsgCreateMultisigAccountParams
+	4,  // 6: multisig.v1.Msg.AddMultisigSigner:input_type -> multisig.v1.MsgAddMultisigSignerParams
+	6,  // 7: multisig.v1.Msg.CleanupMultisigSigner:input_type -> multisig.v1.MsgCleanupMultisigAccountParams
+	8,  // 8: multisig.v1.Msg.SetThreshold:input_type -> multisig.v1.MsgSetMultisigThresholdParams
+	10, // 9: multisig.v1.Msg.InitializeMultisigProposal:input_type -> multisig.v1.MsgInitializeMultisigProposalParams
+	12, // 10: multisig.v1.Msg.ApproveMultisigProposal:input_type -> multisig.v1.MsgApproveMultisigProposalParams
+	14, // 11: multisig.v1.Msg.ApproveAndDispatchMultisigProposal:input_type -> multisig.v1.MsgApproveAndDispatchMultisigProposalParams
+	16, // 12: multisig.v1.Msg.CancelMultisigProposal:input_type -> multisig.v1.MsgCancelMultisigProposalParams
+	18, // 13: multisig.v1.Msg.CleanupMultisigProposal:input_type -> multisig.v1.MsgCleanupMultisigProposalParams
+	1,  // 14: multisig.v1.Msg.UpdateParams:output_type -> multisig.v1.MsgUpdateParamsResponse
+	3,  // 15: multisig.v1.Msg.CreateMultisigAccount:output_type -> multisig.v1.MsgCreateMultisigAccountResponse
+	5,  // 16: multisig.v1.Msg.AddMultisigSigner:output_type -> multisig.v1.MsgAddMultisigSignerResponse
+	7,  // 17: multisig.v1.Msg.CleanupMultisigSigner:output_type -> multisig.v1.MsgCleanupMultisigAccountResponse
+	9,  // 18: multisig.v1.Msg.SetThreshold:output_type -> multisig.v1.MsgSetMultisigThresholdResponse
+	11, // 19: multisig.v1.Msg.InitializeMultisigProposal:output_type -> multisig.v1.MsgInitializeMultisigResponse
+	13, // 20: multisig.v1.Msg.ApproveMultisigProposal:output_type -> multisig.v1.MsgApproveMultisigProposalResponse
+	15, // 21: multisig.v1.Msg.ApproveAndDispatchMultisigProposal:output_type -> multisig.v1.MsgApproveAndDispatchMultisigProposalResponse
+	17, // 22: multisig.v1.Msg.CancelMultisigProposal:output_type -> multisig.v1.MsgCancelMultisigProposalResponse
+	19, // 23: multisig.v1.Msg.CleanupMultisigProposal:output_type -> multisig.v1.MsgCleanupMultisigProposalResponse
+	14, // [14:24] is the sub-list for method output_type
+	4,  // [4:14] is the sub-list for method input_type
+	4,  // [4:4] is the sub-list for extension type_name
+	4,  // [4:4] is the sub-list for extension extendee
+	0,  // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_multisig_v1_tx_proto_init() }
@@ -9477,7 +10642,7 @@ func file_multisig_v1_tx_proto_init() {
 			}
 		}
 		file_multisig_v1_tx_proto_msgTypes[14].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgCancelMultisigProposalParams); i {
+			switch v := v.(*MsgApproveAndDispatchMultisigProposalParams); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -9489,7 +10654,7 @@ func file_multisig_v1_tx_proto_init() {
 			}
 		}
 		file_multisig_v1_tx_proto_msgTypes[15].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgCancelMultisigProposalResponse); i {
+			switch v := v.(*MsgApproveAndDispatchMultisigProposalResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -9501,7 +10666,7 @@ func file_multisig_v1_tx_proto_init() {
 			}
 		}
 		file_multisig_v1_tx_proto_msgTypes[16].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*MsgCleanupMultisigProposalParams); i {
+			switch v := v.(*MsgCancelMultisigProposalParams); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -9513,6 +10678,30 @@ func file_multisig_v1_tx_proto_init() {
 			}
 		}
 		file_multisig_v1_tx_proto_msgTypes[17].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgCancelMultisigProposalResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_multisig_v1_tx_proto_msgTypes[18].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*MsgCleanupMultisigProposalParams); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_multisig_v1_tx_proto_msgTypes[19].Exporter = func(v interface{}, i int) interface{} {
 			switch v := v.(*MsgCleanupMultisigProposalResponse); i {
 			case 0:
 				return &v.state
@@ -9532,7 +10721,7 @@ func file_multisig_v1_tx_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_multisig_v1_tx_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   18,
+			NumMessages:   20,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

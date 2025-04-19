@@ -3,6 +3,7 @@ package keeper
 import (
 	"context"
 
+	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/codec"
 
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
@@ -16,11 +17,13 @@ import (
 
 	apiv1 "github.com/DaevMithran/cosmos-modules/api/multisig/v1"
 	"github.com/DaevMithran/cosmos-modules/x/multisig/types"
+	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 )
 
 type Keeper struct {
 	cdc codec.BinaryCodec
 	ac  address.Codec
+	router       baseapp.MessageRouter
 
 	logger log.Logger
 
@@ -31,14 +34,19 @@ type Keeper struct {
 	OrmDB  apiv1.StateStore
 
 	authority string
+
+	BankKeeper bankkeeper.Keeper
 }
 
 // NewKeeper creates a new Keeper instance
 func NewKeeper(
 	cdc codec.BinaryCodec,
+	ac address.Codec,
+	router baseapp.MessageRouter,
 	storeService storetypes.KVStoreService,
 	logger log.Logger,
 	authority string,
+	bankKeeper bankkeeper.Keeper,
 ) Keeper {
 	logger = logger.With(log.ModuleKey, "x/"+types.ModuleName)
 
@@ -60,6 +68,8 @@ func NewKeeper(
 
 	k := Keeper{
 		cdc:    cdc,
+		ac: 	ac,
+		router: router,
 		logger: logger,
 
 		Params: collections.NewItem(sb, types.ParamsKey, "params", codec.CollValue[types.Params](cdc)),
@@ -67,6 +77,7 @@ func NewKeeper(
 		OrmDB:  store,
 
 		authority: authority,
+		BankKeeper: bankKeeper,
 	}
 
 	schema, err := sb.Build()

@@ -32,6 +32,8 @@ service Msg {
 
   rpc ApproveMultisigProposal(MsgApproveMultisigProposalParams) returns (MsgApproveMultisigProposalResponse);
 
+  rpc ApproveAndDispatchMultisigProposal(MsgApproveAndDispatchMultisigProposalParams) returns (MsgApproveAndDispatchMultisigProposalResponse);
+
   rpc CancelMultisigProposal(MsgCancelMultisigProposalParams) returns (MsgCancelMultisigProposalResponse);
 
   rpc CleanupMultisigProposal(MsgCleanupMultisigProposalParams) returns (MsgCleanupMultisigProposalResponse);
@@ -122,6 +124,19 @@ message MsgApproveMultisigProposalParams {
 
 // MsgApproveMultisigProposalResponse defines the response structure of approving a multisig proposal
 message MsgApproveMultisigProposalResponse {}
+
+// MsgApproveMultisigProposalParams defines the request type to approve a multisig proposal
+message MsgApproveAndDispatchMultisigProposalParams {
+  string multisig_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  uint64 proposal_id = 2;
+  string approver = 3 [(cosmos_proto.scalar) = "cosmos.AddressString"];
+  google.protobuf.Any message = 5 [(cosmos_proto.accepts_interface) = "cosmos.base.v1beta1.Msg"];
+}
+
+// MsgApproveMultisigProposalResponse defines the response structure of approving a multisig proposal
+message MsgApproveAndDispatchMultisigProposalResponse {
+    string transaction_hash = 1;
+}
 
 // MsgCancelMultisigProposalParams defines the request type to reject a multisig proposal
 message MsgCancelMultisigProposalParams {

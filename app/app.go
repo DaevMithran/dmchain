@@ -135,9 +135,9 @@ import (
 )
 
 const (
-	appName      = "multisig"
-	NodeDir      = ".multisig"
-	Bech32Prefix = "cosmos"
+	appName      = "dmchain"
+	NodeDir      = ".dm"
+	Bech32Prefix = "dm"
 )
 
 var (
@@ -186,6 +186,7 @@ var maccPerms = map[string][]string{
 	ibctransfertypes.ModuleName: {authtypes.Minter, authtypes.Burner},
 	ibcfeetypes.ModuleName:      nil,
 	icatypes.ModuleName:         nil,
+	multisigtypes.ModuleName:    nil,
 }
 
 var (
@@ -597,9 +598,12 @@ func NewChainApp(
 	// Create the multisig Keeper
 	app.MultisigKeeper = multisigkeeper.NewKeeper(
 		appCodec,
+		app.AccountKeeper.AddressCodec(),
+		app.MsgServiceRouter(),
 		runtime.NewKVStoreService(keys[multisigtypes.StoreKey]),
 		logger,
 		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
+		app.BankKeeper,
 	)
 
 	// IBC Fee Module keeper
