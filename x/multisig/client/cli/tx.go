@@ -9,7 +9,7 @@ import (
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	"github.com/cosmos/cosmos-sdk/client/tx"
 
-	"github.com/DaevMithran/cosmos-modules/x/multisig/types"
+	"github.com/DaevMithran/dmchain/x/multisig/types"
 )
 
 // !NOTE: Must enable in module.go (disabled in favor of autocli.go)

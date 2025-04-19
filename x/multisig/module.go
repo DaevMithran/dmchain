@@ -18,8 +18,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/DaevMithran/cosmos-modules/x/multisig/keeper"
-	"github.com/DaevMithran/cosmos-modules/x/multisig/types"
+	"github.com/DaevMithran/dmchain/x/multisig/keeper"
+	"github.com/DaevMithran/dmchain/x/multisig/types"
 )
 
 const (

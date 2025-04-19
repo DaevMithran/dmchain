@@ -1,4 +1,4 @@
-module github.com/DaevMithran/cosmos-modules/interchaintest
+module github.com/DaevMithran/dmchain/interchaintest
 
 go 1.22.5
 
@@ -17,7 +17,7 @@ replace (
 	github.com/spf13/viper => github.com/spf13/viper v1.17.0
 
 	// If using custom internal modules, replace your app here with the parent application
-	// github.com/DaevMithran/cosmos-modules => ../.
+	// github.com/DaevMithran/dmchain => ../.
 
 	github.com/vedhavyas/go-subkey => github.com/strangelove-ventures/go-subkey v1.0.7
 )

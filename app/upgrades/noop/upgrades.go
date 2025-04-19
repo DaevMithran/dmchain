@@ -8,7 +8,7 @@ import (
 
 	"github.com/cosmos/cosmos-sdk/types/module"
 
-	"github.com/DaevMithran/cosmos-modules/app/upgrades"
+	"github.com/DaevMithran/dmchain/app/upgrades"
 )
 
 // NewUpgrade constructor

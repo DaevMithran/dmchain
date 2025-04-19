@@ -5,7 +5,7 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	"github.com/DaevMithran/cosmos-modules/x/multisig/types"
+	"github.com/DaevMithran/dmchain/x/multisig/types"
 )
 
 var _ types.QueryServer = Querier{}

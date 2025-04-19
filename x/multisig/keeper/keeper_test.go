@@ -9,7 +9,7 @@ import (
 	"cosmossdk.io/log"
 	storetypes "cosmossdk.io/store/types"
 
-	multisigtypes "github.com/DaevMithran/cosmos-modules/x/multisig/types"
+	multisigtypes "github.com/DaevMithran/dmchain/x/multisig/types"
 	cmtproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	addresscodec "github.com/cosmos/cosmos-sdk/codec/address"
@@ -30,10 +30,10 @@ import (
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	"github.com/DaevMithran/cosmos-modules/app"
-	module "github.com/DaevMithran/cosmos-modules/x/multisig"
-	"github.com/DaevMithran/cosmos-modules/x/multisig/keeper"
-	"github.com/DaevMithran/cosmos-modules/x/multisig/types"
+	"github.com/DaevMithran/dmchain/app"
+	module "github.com/DaevMithran/dmchain/x/multisig"
+	"github.com/DaevMithran/dmchain/x/multisig/keeper"
+	"github.com/DaevMithran/dmchain/x/multisig/types"
 )
 
 var maccPerms = map[string][]string{

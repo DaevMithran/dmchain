@@ -3,10 +3,12 @@ package module
 import (
 	"os"
 
+	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/codec"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
 
+	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 
@@ -16,8 +18,8 @@ import (
 	"cosmossdk.io/depinject"
 	"cosmossdk.io/log"
 
-	modulev1 "github.com/DaevMithran/cosmos-modules/api/multisig/module/v1"
-	"github.com/DaevMithran/cosmos-modules/x/multisig/keeper"
+	modulev1 "github.com/DaevMithran/dmchain/api/multisig/module/v1"
+	"github.com/DaevMithran/dmchain/x/multisig/keeper"
 )
 
 var _ appmodule.AppModule = AppModule{}
@@ -41,9 +43,11 @@ type ModuleInputs struct {
 	Cdc          codec.Codec
 	StoreService store.KVStoreService
 	AddressCodec address.Codec
+	MsgServiceRouter baseapp.MessageRouter
 
 	StakingKeeper  stakingkeeper.Keeper
 	SlashingKeeper slashingkeeper.Keeper
+	BankKeeper    bankkeeper.Keeper
 }
 
 type ModuleOutputs struct {
@@ -56,7 +60,7 @@ type ModuleOutputs struct {
 func ProvideModule(in ModuleInputs) ModuleOutputs {
 	govAddr := authtypes.NewModuleAddress(govtypes.ModuleName).String()
 
-	k := keeper.NewKeeper(in.Cdc, in.StoreService, log.NewLogger(os.Stderr), govAddr)
+	k := keeper.NewKeeper(in.Cdc, in.AddressCodec, in.MsgServiceRouter, in.StoreService, log.NewLogger(os.Stderr), govAddr, in.BankKeeper)
 	m := NewAppModule(in.Cdc, k)
 
 	return ModuleOutputs{Module: m, Keeper: k, Out: depinject.Out{}}

@@ -3,7 +3,7 @@ package keeper_test
 import (
 	"testing"
 
-	apiv1 "github.com/DaevMithran/cosmos-modules/api/multisig/v1"
+	apiv1 "github.com/DaevMithran/dmchain/api/multisig/v1"
 	"github.com/stretchr/testify/require"
 )
 

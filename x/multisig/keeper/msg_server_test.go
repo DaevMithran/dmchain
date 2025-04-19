@@ -5,7 +5,7 @@ import (
 
 	"github.com/stretchr/testify/require"
 
-	"github.com/DaevMithran/cosmos-modules/x/multisig/types"
+	"github.com/DaevMithran/dmchain/x/multisig/types"
 )
 
 func TestParams(t *testing.T) {

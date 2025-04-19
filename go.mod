@@ -1,4 +1,4 @@
-module github.com/DaevMithran/cosmos-modules
+module github.com/DaevMithran/dmchain
 
 go 1.22.11
 

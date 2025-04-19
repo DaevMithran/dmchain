@@ -3,7 +3,7 @@ package types_test
 import (
 	"testing"
 
-	"github.com/DaevMithran/cosmos-modules/x/multisig/types"
+	"github.com/DaevMithran/dmchain/x/multisig/types"
 
 	"github.com/stretchr/testify/require"
 )

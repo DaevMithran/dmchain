@@ -19,8 +19,8 @@ import (
 	txmodule "github.com/cosmos/cosmos-sdk/x/auth/tx/config"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/DaevMithran/cosmos-modules/app"
-	"github.com/DaevMithran/cosmos-modules/app/params"
+	"github.com/DaevMithran/dmchain/app"
+	"github.com/DaevMithran/dmchain/app/params"
 )
 
 // NewRootCmd creates a new root command for chain app. It is called once in the

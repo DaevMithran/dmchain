@@ -2,7 +2,7 @@ package module
 
 import (
 	autocliv1 "cosmossdk.io/api/cosmos/autocli/v1"
-	modulev1 "github.com/DaevMithran/cosmos-modules/api/multisig/v1"
+	modulev1 "github.com/DaevMithran/dmchain/api/multisig/v1"
 )
 
 // AutoCLIOptions implements the autocli.HasAutoCLIConfig interface.

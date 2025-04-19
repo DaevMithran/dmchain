@@ -10,8 +10,8 @@ import (
 
 	"cosmossdk.io/errors"
 	"cosmossdk.io/math"
-	multisigv1 "github.com/DaevMithran/cosmos-modules/api/multisig/v1"
-	"github.com/DaevMithran/cosmos-modules/x/multisig/types"
+	multisigv1 "github.com/DaevMithran/dmchain/api/multisig/v1"
+	"github.com/DaevMithran/dmchain/x/multisig/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )

@@ -10,7 +10,7 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/DaevMithran/cosmos-modules/app/decorators"
+	"github.com/DaevMithran/dmchain/app/decorators"
 )
 
 type AnteTestSuite struct {

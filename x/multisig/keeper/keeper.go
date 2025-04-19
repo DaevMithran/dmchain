@@ -15,8 +15,8 @@ import (
 	"cosmossdk.io/log"
 	"cosmossdk.io/orm/model/ormdb"
 
-	apiv1 "github.com/DaevMithran/cosmos-modules/api/multisig/v1"
-	"github.com/DaevMithran/cosmos-modules/x/multisig/types"
+	apiv1 "github.com/DaevMithran/dmchain/api/multisig/v1"
+	"github.com/DaevMithran/dmchain/x/multisig/types"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 )
 

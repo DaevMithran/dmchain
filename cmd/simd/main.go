@@ -5,7 +5,7 @@ import (
 
 	"cosmossdk.io/log"
 
-	"github.com/DaevMithran/cosmos-modules/app"
+	"github.com/DaevMithran/dmchain/app"
 	svrcmd "github.com/cosmos/cosmos-sdk/server/cmd"
 )
 

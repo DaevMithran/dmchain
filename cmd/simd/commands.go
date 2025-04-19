@@ -5,7 +5,7 @@ import (
 	"io"
 	"os"
 
-	"github.com/DaevMithran/cosmos-modules/app"
+	"github.com/DaevMithran/dmchain/app"
 	cmtcfg "github.com/cometbft/cometbft/config"
 	dbm "github.com/cosmos/cosmos-db"
 	"github.com/spf13/cast"
