@@ -34,6 +34,10 @@ import (
 	multisig "github.com/DaevMithran/dmchain/x/multisig"
 	multisigkeeper "github.com/DaevMithran/dmchain/x/multisig/keeper"
 	multisigtypes "github.com/DaevMithran/dmchain/x/multisig/types"
+	oracle "github.com/DaevMithran/dmchain/x/oracle"
+	oracleabci "github.com/DaevMithran/dmchain/x/oracle/abci"
+	oraclekeeper "github.com/DaevMithran/dmchain/x/oracle/keeper"
+	oracletypes "github.com/DaevMithran/dmchain/x/oracle/types"
 	abci "github.com/cometbft/cometbft/abci/types"
 	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	dbm "github.com/cosmos/cosmos-db"
@@ -240,7 +244,8 @@ type ChainApp struct {
 	ScopedICAControllerKeeper capabilitykeeper.ScopedKeeper
 	ScopedTransferKeeper      capabilitykeeper.ScopedKeeper
 	ScopedIBCFeeKeeper        capabilitykeeper.ScopedKeeper
-	MultisigKeeper multisigkeeper.Keeper
+	MultisigKeeper            multisigkeeper.Keeper
+	OracleKeeper              oraclekeeper.Keeper
 
 	// the module manager
 	ModuleManager      *module.Manager
@@ -284,39 +289,6 @@ func NewChainApp(
 	std.RegisterLegacyAminoCodec(legacyAmino)
 	std.RegisterInterfaces(interfaceRegistry)
 
-	// Below we could construct and set an application specific mempool and
-	// ABCI 1.0 PrepareProposal and ProcessProposal handlers. These defaults are
-	// already set in the SDK's BaseApp, this shows an example of how to override
-	// them.
-	//
-	// Example:
-	//
-	// bApp := baseapp.NewBaseApp(...)
-	// nonceMempool := mempool.NewSenderNonceMempool()
-	// abciPropHandler := NewDefaultProposalHandler(nonceMempool, bApp)
-	//
-	// bApp.SetMempool(nonceMempool)
-	// bApp.SetPrepareProposal(abciPropHandler.PrepareProposalHandler())
-	// bApp.SetProcessProposal(abciPropHandler.ProcessProposalHandler())
-	//
-	// Alternatively, you can construct BaseApp options, append those to
-	// baseAppOptions and pass them to NewBaseApp.
-	//
-	// Example:
-	//
-	// prepareOpt = func(app *baseapp.BaseApp) {
-	// 	abciPropHandler := baseapp.NewDefaultProposalHandler(nonceMempool, app)
-	// 	app.SetPrepareProposal(abciPropHandler.PrepareProposalHandler())
-	// }
-	// baseAppOptions = append(baseAppOptions, prepareOpt)
-
-	// create and set dummy vote extension handler
-	// voteExtOp := func(bApp *baseapp.BaseApp) {
-	//	voteExtHandler := NewVoteExtensionHandler()
-	//	voteExtHandler.SetHandlers(bApp)
-	// }
-	// baseAppOptions = append(baseAppOptions, voteExtOp)
-
 	baseAppOptions = append(baseAppOptions, baseapp.SetOptimisticExecution())
 
 	bApp := baseapp.NewBaseApp(appName, logger, db, txConfig.TxDecoder(), baseAppOptions...)
@@ -351,6 +323,7 @@ func NewChainApp(
 		icahosttypes.StoreKey,
 		icacontrollertypes.StoreKey,
 		multisigtypes.StoreKey,
+		oracletypes.StoreKey,
 	)
 
 	tkeys := storetypes.NewTransientStoreKeys(paramstypes.TStoreKey)
@@ -595,6 +568,20 @@ func NewChainApp(
 	// If evidence needs to be handled for the app, set routes in router here and seal
 	app.EvidenceKeeper = *evidenceKeeper
 
+	// Create the oracle Keeper
+	app.OracleKeeper = oraclekeeper.NewKeeper(
+		appCodec,
+		runtime.NewKVStoreService(keys[oracletypes.StoreKey]),
+		app.GetSubspace(oracletypes.ModuleName),
+		app.AccountKeeper,
+		app.BankKeeper,
+		app.DistrKeeper,
+		app.StakingKeeper,
+		distrtypes.ModuleName,
+		cast.ToBool(appOpts.Get("telemetry.enabled")),
+		authtypes.NewModuleAddress(govtypes.ModuleName).String(),
+	)
+
 	// Create the multisig Keeper
 	app.MultisigKeeper = multisigkeeper.NewKeeper(
 		appCodec,
@@ -733,6 +720,7 @@ func NewChainApp(
 		// custom
 		multisig.NewAppModule(appCodec, app.MultisigKeeper),
 
+		oracle.NewAppModule(appCodec, app.OracleKeeper, app.AccountKeeper, app.BankKeeper),
 	)
 
 	// BasicModuleManager defines the module BasicManager is in charge of setting up basic,
@@ -771,6 +759,7 @@ func NewChainApp(
 		icatypes.ModuleName,
 		ibcfeetypes.ModuleName,
 		multisigtypes.ModuleName,
+		oracletypes.ModuleName,
 	)
 
 	app.ModuleManager.SetOrderEndBlockers(
@@ -787,6 +776,7 @@ func NewChainApp(
 		icatypes.ModuleName,
 		ibcfeetypes.ModuleName,
 		multisigtypes.ModuleName,
+		oracletypes.ModuleName,
 	)
 
 	// NOTE: The genutils module must occur after staking so that pools are
@@ -825,6 +815,7 @@ func NewChainApp(
 		icatypes.ModuleName,
 		ibcfeetypes.ModuleName,
 		multisigtypes.ModuleName,
+		oracletypes.ModuleName,
 	}
 	app.ModuleManager.SetOrderInitGenesis(genesisModuleOrder...)
 	app.ModuleManager.SetOrderExportGenesis(genesisModuleOrder...)
@@ -862,8 +853,22 @@ func NewChainApp(
 		authtypes.ModuleName: auth.NewAppModule(app.appCodec, app.AccountKeeper, authsims.RandomGenesisAccounts, app.GetSubspace(authtypes.ModuleName)),
 	}
 	app.sm = module.NewSimulationManagerFromAppModules(app.ModuleManager.Modules, overrideModules)
-
 	app.sm.RegisterStoreDecoders()
+
+	proposalHandler := oracleabci.NewProposalHandler(
+		app.Logger(),
+		app.OracleKeeper,
+		app.StakingKeeper,
+	)
+	app.SetPrepareProposal(proposalHandler.PrepareProposalHandler())
+	app.SetProcessProposal(proposalHandler.ProcessProposalHandler())
+
+	voteExtensionsHandler := oracleabci.NewVoteExtensionHandler(
+		app.Logger(),
+		app.OracleKeeper,
+	)
+	app.SetExtendVoteHandler(voteExtensionsHandler.ExtendVoteHandler())
+	app.SetVerifyVoteExtensionHandler(voteExtensionsHandler.VerifyVoteExtensionHandler())
 
 	// initialize stores
 	app.MountKVStores(keys)
@@ -1211,6 +1216,7 @@ func initParamsKeeper(appCodec codec.BinaryCodec, legacyAmino *codec.LegacyAmino
 	paramsKeeper.Subspace(icacontrollertypes.SubModuleName).WithKeyTable(icacontrollertypes.ParamKeyTable())
 	paramsKeeper.Subspace(icahosttypes.SubModuleName).WithKeyTable(icahosttypes.ParamKeyTable())
 	paramsKeeper.Subspace(multisigtypes.ModuleName)
+	paramsKeeper.Subspace(oracletypes.ModuleName)
 
 	return paramsKeeper
 }
