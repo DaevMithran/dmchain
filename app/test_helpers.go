@@ -46,6 +46,10 @@ import (
 
 const chainID = "testing"
 
+type TestApp struct {
+	ChainApp
+}
+
 // SetupOptions defines arguments that are passed into `ChainApp` constructor.
 type SetupOptions struct {
 	Logger  log.Logger

@@ -78,7 +78,7 @@ message MsgCreateMultisigAccountResponse {
 message MsgAddMultisigSignerParams {
   string multisig_address = 1 [(cosmos_proto.scalar) = "cosmos.AddressString"];
   string signer = 2 [(cosmos_proto.scalar) = "cosmos.AddressString"];
-  optional uint32 new_threshold = 3;
+  uint32 new_threshold = 3;
 }
 
 // MsgAddMultisigSignerResponse defines the response structure of adding a signer to a multisig account

@@ -48,10 +48,10 @@ func (ms msgServer) CreateMultisigAccount(ctx context.Context, msg *types.MsgCre
 		return nil, errors.Wrapf(sdkerrors.ErrInsufficientFee, "invalid threshold")
 	}
 
-    // validate signers
-    if len(msg.Signers) < 2 && len(msg.Signers) > 10 {
-        return nil, errors.Wrap(sdkerrors.ErrInsufficientFunds, "Atleast two signers are required")
-    }
+	// validate signers
+	if len(msg.Signers) < 2 && len(msg.Signers) > 10 {
+		return nil, errors.Wrap(sdkerrors.ErrInsufficientFunds, "Atleast two signers are required")
+	}
 
 	// derive multi account id
 	multisig_address := DeriveMultisigAccountID(msg.Seed)
@@ -64,54 +64,54 @@ func (ms msgServer) CreateMultisigAccount(ctx context.Context, msg *types.MsgCre
 
 	// insert multisig acount
 	ms.k.MultisigAccounts.Set(ctx, multisig_address, types.MultisigAccountDetails{
-		Threshold: msg.Threshold,
-		Signers: append(msg.Signers, sender),
+		Threshold:  msg.Threshold,
+		Signers:    append(msg.Signers, sender),
 		Permission: msg.Permission,
 	})
 
 	return &types.MsgCreateMultisigAccountResponse{
-        MultisigAddress: string(multisig_address),
-    }, nil
+		MultisigAddress: string(multisig_address),
+	}, nil
 }
 
 // AddMultisigSigner implements types.MsgServer.
 func (ms msgServer) AddMultisigSigner(ctx context.Context, msg *types.MsgAddMultisigSignerParams) (*types.MsgAddMultisigSignerResponse, error) {
 
-    multisig_address, err := ms.k.ac.StringToBytes(msg.MultisigAddress)
+	multisig_address, err := ms.k.ac.StringToBytes(msg.MultisigAddress)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrInvalidAddress, "Invalid multisig address (%s)", msg.MultisigAddress)
 	}
 
-    new_signer, err := ms.k.ac.StringToBytes(msg.Signer)
+	new_signer, err := ms.k.ac.StringToBytes(msg.Signer)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrInvalidAddress, "Invalid signer address (%s)", msg.Signer)
 	}
 
-    // validate multisig_address
-    multisig_account_details, err := ms.k.MultisigAccounts.Get(ctx, multisig_address)
+	// validate multisig_address
+	multisig_account_details, err := ms.k.MultisigAccounts.Get(ctx, multisig_address)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrConflict, "Invalid multisig: Account not found")
 	}
 
-    // validate signer: Is it better to have an index table just for this; Makes deletion and updates expensive!
-    if contains(multisig_account_details.Signers, new_signer) == true {
-        return nil, errors.Wrap(sdkerrors.ErrConflict, "Duplicate signer")
-    }
+	// validate signer: Is it better to have an index table just for this; Makes deletion and updates expensive!
+	if contains(multisig_account_details.Signers, new_signer) == true {
+		return nil, errors.Wrap(sdkerrors.ErrConflict, "Duplicate signer")
+	}
 
-    // check if new threshold is provided
-    if msg.XNewThreshold != nil {
-        if msg.GetNewThreshold() < 1 {
-            return nil, errors.Wrapf(sdkerrors.ErrInsufficientFee, "invalid threshold")
-        }
+	// check if new threshold is provided
+	if msg.NewThreshold != 0 {
+		if msg.GetNewThreshold() < 1 {
+			return nil, errors.Wrapf(sdkerrors.ErrInsufficientFee, "invalid threshold")
+		}
 
-        multisig_account_details.Threshold = msg.GetNewThreshold()
-    }
+		multisig_account_details.Threshold = msg.GetNewThreshold()
+	}
 
-    // Update the signer list
-    multisig_account_details.Signers = append(multisig_account_details.Signers, new_signer);
+	// Update the signer list
+	multisig_account_details.Signers = append(multisig_account_details.Signers, new_signer)
 
-    // Update the multisig account
-    ms.k.MultisigAccounts.Set(ctx, multisig_address, multisig_account_details)
+	// Update the multisig account
+	ms.k.MultisigAccounts.Set(ctx, multisig_address, multisig_account_details)
 
 	return &types.MsgAddMultisigSignerResponse{}, nil
 }
@@ -130,181 +130,181 @@ func (ms msgServer) SetThreshold(ctx context.Context, msg *types.MsgSetMultisigT
 
 // InitializeMultisigProposal implements types.MsgServer.
 func (ms msgServer) InitializeMultisigProposal(ctx context.Context, msg *types.MsgInitializeMultisigProposalParams) (*types.MsgInitializeMultisigResponse, error) {
-    // validate proposer address
-    proposer, err := ms.k.ac.StringToBytes(msg.Proposer)
+	// validate proposer address
+	proposer, err := ms.k.ac.StringToBytes(msg.Proposer)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrInvalidAddress, "Invalid signer address (%s)", msg.Proposer)
 	}
-    
-    multisig_address, err := ms.k.ac.StringToBytes(msg.MultisigAddress)
+
+	multisig_address, err := ms.k.ac.StringToBytes(msg.MultisigAddress)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrInvalidAddress, "Invalid multisig address (%s)", msg.MultisigAddress)
 	}
 
-    // validate account
-    multisig_account_details, err := ms.k.MultisigAccounts.Get(ctx, multisig_address)
+	// validate account
+	multisig_account_details, err := ms.k.MultisigAccounts.Get(ctx, multisig_address)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrConflict, "Invalid multisig: Account not found")
 	}
 
-    // validate proposer
-    if contains(multisig_account_details.Signers, proposer) == false {
-        return nil, errors.Wrap(sdkerrors.ErrConflict, "Invalid proposer: Permission Denied")
-    }
+	// validate proposer
+	if contains(multisig_account_details.Signers, proposer) == false {
+		return nil, errors.Wrap(sdkerrors.ErrConflict, "Invalid proposer: Permission Denied")
+	}
 
-    // Compute call hash
-    call_hash := blake2b.Sum256(msg.Message.Value)
+	// Compute call hash
+	call_hash := blake2b.Sum256(msg.Message.Value)
 
-    // validate call
-    existing_proposal, err := ms.k.OrmDB.ProposalTable().GetByMultisigAddressCallHash(ctx, multisig_address, call_hash[:])
-    if err != nil {
-        return &types.MsgInitializeMultisigResponse{
-            ProposalId: existing_proposal.Id,
-        }, nil
-    }
+	// validate call
+	existing_proposal, err := ms.k.OrmDB.ProposalTable().GetByMultisigAddressCallHash(ctx, multisig_address, call_hash[:])
+	if err != nil {
+		return &types.MsgInitializeMultisigResponse{
+			ProposalId: existing_proposal.Id,
+		}, nil
+	}
 
-    // approvals
-    approvals := [][]byte{proposer};
+	// approvals
+	approvals := [][]byte{proposer}
 
-    id, err := ms.k.OrmDB.ProposalTable().InsertReturningId(
-        ctx,
-        &multisigv1.Proposal{
-            Depositor: proposer,
-            Deposit: 10,
-            MultisigAddress: multisig_address,
-            Approvals: approvals,
-            CallHash: call_hash[:],
-        },
-    )
+	id, err := ms.k.OrmDB.ProposalTable().InsertReturningId(
+		ctx,
+		&multisigv1.Proposal{
+			Depositor:       proposer,
+			Deposit:         10,
+			MultisigAddress: multisig_address,
+			Approvals:       approvals,
+			CallHash:        call_hash[:],
+		},
+	)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrConflict, "Invalid multisig: Proposal addition failed")
 	}
 
-    // collect deposit
-    deposit := sdk.NewCoins(sdk.NewCoin("uom", math.NewInt(int64(10))))
-    err = ms.k.BankKeeper.SendCoinsFromAccountToModule(ctx, proposer, types.ModuleName, deposit)
-    if err != nil {
-        return nil, err
-    }
+	// collect deposit
+	deposit := sdk.NewCoins(sdk.NewCoin("uom", math.NewInt(int64(10))))
+	err = ms.k.BankKeeper.SendCoinsFromAccountToModule(ctx, proposer, types.ModuleName, deposit)
+	if err != nil {
+		return nil, err
+	}
 
 	return &types.MsgInitializeMultisigResponse{
-        ProposalId: id,
-    }, nil
+		ProposalId: id,
+	}, nil
 }
 
 // ApproveMultisigProposal implements types.MsgServer.
 func (ms msgServer) ApproveMultisigProposal(ctx context.Context, msg *types.MsgApproveMultisigProposalParams) (*types.MsgApproveMultisigProposalResponse, error) {
 
-    approver, err := ms.k.ac.StringToBytes(msg.Approver)
+	approver, err := ms.k.ac.StringToBytes(msg.Approver)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrInvalidAddress, "Invalid signer address (%s)", msg.Approver)
 	}
-    
-    multisig_address, err := ms.k.ac.StringToBytes(msg.MultisigAddress)
+
+	multisig_address, err := ms.k.ac.StringToBytes(msg.MultisigAddress)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrInvalidAddress, "Invalid multisig address (%s)", msg.MultisigAddress)
 	}
 
-    // validate account
-    multisig_account_details, err := ms.k.MultisigAccounts.Get(ctx, multisig_address)
+	// validate account
+	multisig_account_details, err := ms.k.MultisigAccounts.Get(ctx, multisig_address)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrConflict, "Invalid multisig: Account not found")
 	}
 
-    // validate approver
-    if contains(multisig_account_details.Signers, approver) == false {
-        return nil, errors.Wrap(sdkerrors.ErrConflict, "Invalid proposer: Permission Denied")
-    }
+	// validate approver
+	if contains(multisig_account_details.Signers, approver) == false {
+		return nil, errors.Wrap(sdkerrors.ErrConflict, "Invalid proposer: Permission Denied")
+	}
 
-    // validate proposal
-    proposal, err := ms.k.OrmDB.ProposalTable().Get(ctx, msg.GetProposalId())
-    if contains(proposal.Approvals, approver) {
-       return &types.MsgApproveMultisigProposalResponse{}, nil
-    }
+	// validate proposal
+	proposal, err := ms.k.OrmDB.ProposalTable().Get(ctx, msg.GetProposalId())
+	if contains(proposal.Approvals, approver) {
+		return &types.MsgApproveMultisigProposalResponse{}, nil
+	}
 
-    // Add approval if needed
-    if len(proposal.Approvals) < int(multisig_account_details.Threshold) {
-        // approve proposal
-        proposal.Approvals = append(proposal.Approvals, approver)
+	// Add approval if needed
+	if len(proposal.Approvals) < int(multisig_account_details.Threshold) {
+		// approve proposal
+		proposal.Approvals = append(proposal.Approvals, approver)
 
-        // update proposal
-        ms.k.OrmDB.ProposalTable().Update(ctx, proposal)
-    }
+		// update proposal
+		ms.k.OrmDB.ProposalTable().Update(ctx, proposal)
+	}
 
 	return &types.MsgApproveMultisigProposalResponse{}, nil
 }
 
 // ApproveAndDispatchMultisigProposal implements types.MsgServer.
 func (ms msgServer) ApproveAndDispatchMultisigProposal(ctx context.Context, msg *types.MsgApproveAndDispatchMultisigProposalParams) (*types.MsgApproveAndDispatchMultisigProposalResponse, error) {
-    // vaidate signer
-    approver, err := ms.k.ac.StringToBytes(msg.Approver)
+	// vaidate signer
+	approver, err := ms.k.ac.StringToBytes(msg.Approver)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrInvalidAddress, "Invalid signer address (%s)", msg.Approver)
 	}
-    
-    multisig_address, err := ms.k.ac.StringToBytes(msg.MultisigAddress)
+
+	multisig_address, err := ms.k.ac.StringToBytes(msg.MultisigAddress)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrInvalidAddress, "Invalid multisig address (%s)", msg.MultisigAddress)
 	}
 
-    // validate account
-    multisig_account_details, err := ms.k.MultisigAccounts.Get(ctx, multisig_address)
+	// validate account
+	multisig_account_details, err := ms.k.MultisigAccounts.Get(ctx, multisig_address)
 	if err != nil {
 		return nil, errors.Wrapf(sdkerrors.ErrConflict, "Invalid multisig: Account not found")
 	}
 
-    // validate approver
-    if contains(multisig_account_details.Signers, approver) == false {
-        return nil, errors.Wrap(sdkerrors.ErrConflict, "Invalid proposer: Permission Denied")
-    }
+	// validate approver
+	if contains(multisig_account_details.Signers, approver) == false {
+		return nil, errors.Wrap(sdkerrors.ErrConflict, "Invalid proposer: Permission Denied")
+	}
 
-    // Compute call hash
-    call_hash := blake2b.Sum256(msg.Message.Value)
+	// Compute call hash
+	call_hash := blake2b.Sum256(msg.Message.Value)
 
-    // validate proposal
-    proposal, err := ms.k.OrmDB.ProposalTable().GetByMultisigAddressCallHash(ctx, multisig_address, call_hash[:])
-    if err != nil {
-        return nil, err
-    }
+	// validate proposal
+	proposal, err := ms.k.OrmDB.ProposalTable().GetByMultisigAddressCallHash(ctx, multisig_address, call_hash[:])
+	if err != nil {
+		return nil, err
+	}
 
-    if msg.ProposalId != proposal.Id {
-        return nil, errors.Wrap(sdkerrors.ErrConflict, "Proposal Id does not match with call_hash")
-    }
+	if msg.ProposalId != proposal.Id {
+		return nil, errors.Wrap(sdkerrors.ErrConflict, "Proposal Id does not match with call_hash")
+	}
 
-    // if dispatcher has approved already
-    approvals_len := len(proposal.Approvals)
-    if !contains(proposal.Approvals, approver) {
-        approvals_len += 1;
-    }
+	// if dispatcher has approved already
+	approvals_len := len(proposal.Approvals)
+	if !contains(proposal.Approvals, approver) {
+		approvals_len += 1
+	}
 
-    // check threshold
-    if approvals_len < int(multisig_account_details.Threshold) {
-        return nil, errors.Wrap(sdkerrors.ErrInsufficientFee, "Cannot dispatch proposal, threshold not met")
-    }
+	// check threshold
+	if approvals_len < int(multisig_account_details.Threshold) {
+		return nil, errors.Wrap(sdkerrors.ErrInsufficientFee, "Cannot dispatch proposal, threshold not met")
+	}
 
-    // dispatch call
-    res, err := ms.k.DispatchActions(ctx, multisig_address, msg)
+	// dispatch call
+	res, err := ms.k.DispatchActions(ctx, multisig_address, msg)
 
-    // remove proposal
-    ms.k.OrmDB.ProposalTable().Delete(ctx, proposal)
+	// remove proposal
+	ms.k.OrmDB.ProposalTable().Delete(ctx, proposal)
 
 	return &types.MsgApproveAndDispatchMultisigProposalResponse{
-        TransactionHash: string(res.Data),
-    }, nil
+		TransactionHash: string(res.Data),
+	}, nil
 }
 
 func (k Keeper) DispatchActions(ctx context.Context, multisig_address sdk.AccAddress, msg sdk.Msg) (*sdk.Result, error) {
 	sdkCtx := sdk.UnwrapSDKContext(ctx)
 
-    handler := k.router.Handler(msg)
-    if handler == nil {
-        return nil, sdkerrors.ErrUnknownRequest.Wrapf("unrecognized message route: %s", sdk.MsgTypeURL(msg))
-    }
+	handler := k.router.Handler(msg)
+	if handler == nil {
+		return nil, sdkerrors.ErrUnknownRequest.Wrapf("unrecognized message route: %s", sdk.MsgTypeURL(msg))
+	}
 
-    msgResp, err := handler(sdkCtx, msg)
-    if err != nil {
-        return nil, errors.Wrapf(err, "failed to execute message; message %v", msg)
-    }
+	msgResp, err := handler(sdkCtx, msg)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to execute message; message %v", msg)
+	}
 
 	return msgResp, nil
 }
@@ -334,17 +334,17 @@ func DeriveMultisigAccountID(seed uint32) sdk.AccAddress {
 	hash := blake2b.Sum256(input)
 
 	// Take the first 20 bytes to form an AccAddress
-	addr:= hash[:20]
+	addr := hash[:20]
 
 	return sdk.AccAddress(addr)
 
 }
 
 func contains(signers [][]byte, signer []byte) bool {
-    for _, signer := range signers {
-        if bytes.Equal(signer, signer) {
-            return true
-        }
-    }
-    return false
+	for _, signer := range signers {
+		if bytes.Equal(signer, signer) {
+			return true
+		}
+	}
+	return false
 }
