@@ -27,16 +27,16 @@ func init() {
 // RegisterLegacyAminoCodec registers the necessary x/oracle interfaces and concrete types
 // on the provided LegacyAmino codec. These types are used for Amino JSON serialization.
 func RegisterLegacyAminoCodec(cdc *codec.LegacyAmino) {
-	cdc.RegisterConcrete(&MsgAggregateExchangeRatePrevote{}, "cheqd/oracle/MsgAggregateExchangeRatePrevote", nil)
-	cdc.RegisterConcrete(&MsgAggregateExchangeRateVote{}, "cheqd/oracle/MsgAggregateExchangeRateVote", nil)
-	cdc.RegisterConcrete(&MsgDelegateFeedConsent{}, "cheqd/oracle/MsgDelegateFeedConsent", nil)
-	cdc.RegisterConcrete(&MsgLegacyGovUpdateParams{}, "cheqd/oracle/MsgLegacyGovUpdateParams", nil)
-	cdc.RegisterConcrete(&MsgGovUpdateParams{}, "cheqd/oracle/MsgGovUpdateParams", nil)
-	cdc.RegisterConcrete(&MsgGovAddDenoms{}, "cheqd/oracle/MsgGovAddDenoms", nil)
-	cdc.RegisterConcrete(&MsgGovRemoveCurrencyPairProviders{}, "cheqd/oracle/MsgGovRemoveCurrencyPairProviders", nil)
+	cdc.RegisterConcrete(&MsgAggregateExchangeRatePrevote{}, "dmchain/oracle/MsgAggregateExchangeRatePrevote", nil)
+	cdc.RegisterConcrete(&MsgAggregateExchangeRateVote{}, "dmchain/oracle/MsgAggregateExchangeRateVote", nil)
+	cdc.RegisterConcrete(&MsgDelegateFeedConsent{}, "dmchain/oracle/MsgDelegateFeedConsent", nil)
+	cdc.RegisterConcrete(&MsgLegacyGovUpdateParams{}, "dmchain/oracle/MsgLegacyGovUpdateParams", nil)
+	cdc.RegisterConcrete(&MsgGovUpdateParams{}, "dmchain/oracle/MsgGovUpdateParams", nil)
+	cdc.RegisterConcrete(&MsgGovAddDenoms{}, "dmchain/oracle/MsgGovAddDenoms", nil)
+	cdc.RegisterConcrete(&MsgGovRemoveCurrencyPairProviders{}, "dmchain/oracle/MsgGovRemoveCurrencyPairProviders", nil)
 	cdc.RegisterConcrete(
 		&MsgGovRemoveCurrencyDeviationThresholds{},
-		"cheqd/oracle/MsgGovRemoveCurrencyDeviationThresholds",
+		"dmchain/oracle/MsgGovRemoveCurrencyDeviationThresholds",
 		nil,
 	)
 }

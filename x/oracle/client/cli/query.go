@@ -74,11 +74,11 @@ func GetCmdQueryAggregateVote() *cobra.Command {
 		Long: strings.TrimSpace(`
 Query outstanding oracle aggregate vote.
 
-$ cheqd-noded query oracle aggregate-votes
+$ simd query oracle aggregate-votes
 
 Or, you can filter with voter address
 
-$ cheqd-noded query oracle aggregate-votes cheqdvaloper...
+$ simd query oracle aggregate-votes cheqdvaloper...
 `),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientQueryContext(cmd)
@@ -116,11 +116,11 @@ func GetCmdQueryAggregatePrevote() *cobra.Command {
 		Long: strings.TrimSpace(`
 Query outstanding oracle aggregate prevotes.
 
-$ cheqd-noded query oracle aggregate-prevotes
+$ simd query oracle aggregate-prevotes
 
 Or, can filter with voter address
 
-$ cheqd-noded query oracle aggregate-prevotes cheqdvaloper...
+$ simd query oracle aggregate-prevotes cheqdvaloper...
 `),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientQueryContext(cmd)
@@ -158,7 +158,7 @@ func GetCmdQueryExchangeRates() *cobra.Command {
 Query the current exchange rates of assets based on USD.
 You can find the current list of active denoms by running
 
-$ cheqd-noded query oracle exchange-rates
+$ simd query oracle exchange-rates
 `),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientQueryContext(cmd)
@@ -185,7 +185,7 @@ func GetCmdQueryExchangeRate() *cobra.Command {
 		Long: strings.TrimSpace(`
 Query the current exchange rates of an asset based on USD.
 
-$ cheqd-noded query oracle exchange-rate ATOM
+$ simd query oracle exchange-rate ATOM
 `),
 		RunE: func(cmd *cobra.Command, args []string) error {
 			clientCtx, err := client.GetClientQueryContext(cmd)

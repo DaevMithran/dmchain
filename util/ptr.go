@@ -5,12 +5,12 @@ import (
 )
 
 const (
-	CheqExponent     = 9
+	DmExponent       = 9
 	UsdScaleExponent = 6
 )
 
 var (
-	CheqScale    = sdkmath.NewIntWithDecimal(1, CheqExponent)
+	DmScale      = sdkmath.NewIntWithDecimal(1, DmExponent)
 	UsdScale     = sdkmath.NewIntWithDecimal(1, UsdScaleExponent)
 	UsdFrom18To6 = sdkmath.NewInt(1_000_000_000_000)
 	UsdExponent  = sdkmath.NewIntWithDecimal(1, 18)

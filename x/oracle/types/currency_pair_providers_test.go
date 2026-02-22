@@ -36,7 +36,7 @@ func TestCurrencyPairProvidersString(t *testing.T) {
 
 func TestCurrencyPairProvidersEqual(t *testing.T) {
 	cpp1 := CurrencyPairProviders{
-		BaseDenom:  "CHEQ",
+		BaseDenom:  "DM",
 		QuoteDenom: "USD",
 		Providers: []string{
 			"binance",
@@ -44,7 +44,7 @@ func TestCurrencyPairProvidersEqual(t *testing.T) {
 		},
 	}
 	cpp2 := CurrencyPairProviders{
-		BaseDenom:  "CHEQ",
+		BaseDenom:  "DM",
 		QuoteDenom: "USD",
 		Providers: []string{
 			"binance",
@@ -52,7 +52,7 @@ func TestCurrencyPairProvidersEqual(t *testing.T) {
 		},
 	}
 	cpp3 := CurrencyPairProviders{
-		BaseDenom:  "CHEQ",
+		BaseDenom:  "DM",
 		QuoteDenom: "ATOM",
 		Providers: []string{
 			"binance",
@@ -60,14 +60,14 @@ func TestCurrencyPairProvidersEqual(t *testing.T) {
 		},
 	}
 	cpp4 := CurrencyPairProviders{
-		BaseDenom:  "CHEQ",
+		BaseDenom:  "DM",
 		QuoteDenom: "USD",
 		Providers: []string{
 			"binance",
 		},
 	}
 	cpp5 := CurrencyPairProviders{
-		BaseDenom:  "CHEQ",
+		BaseDenom:  "DM",
 		QuoteDenom: "ATOM",
 		Providers: []string{
 			"binance",
